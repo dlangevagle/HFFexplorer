@@ -42,9 +42,9 @@ coordinate.
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
 File with the catalog x and y coordinates for each source. x-coordinate entries are listed first, followed by
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-y-coordinate entries. For example, the x-coordinate of the source with id 3501 can be found on line 3501 and the
+y-coordinate entries. For example, the x-coordinate of the source with id 3501 can be found on line 3501 and
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-y-coordinate can be found on line len(catalog)+3501=9390+3501=12891.
+the y-coordinate can be found on line len(catalog)+3501=9390+3501=12891.
 <br>
 <br>
 <b>A2744-clu/JSON/info.json</b>
