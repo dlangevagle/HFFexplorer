@@ -1,0 +1,412 @@
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" name="viewport" content="IE=edge, chrome=1, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-u, viewport-fit=cover">
+    <title id="title"></title>
+    <link id = "dynamic-favicon" rel="shortcut icon" type="image/png" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/HFFDS-icon2.png">
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~daniellangevagle/stylesheets/grizliweb.css?version=0.4" type="text/css" media="all"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.4.2" type="text/css" media="all"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=4.4.2"></script>
+  </head>
+  <body id="body" style="height: 100%; width: 100%; margin: 0; overflow: hidden;">
+    <div id="maincontainer" class="twocolumns" style="max-height: 100%; display: inline-block; width: calc(100% - 20px); margin: 10px 5px 10px 10px; font-size: 0; overflow-y: scroll;">
+        <div id="toptitle" style="width: 100%; margin: 5px 0 5px 0; font-size: 20px; text-align: center;"></div>
+        <div style="width: 100%">
+          <div class="disableTextHighlight" style="width: 50%; display: inline-block; vertical-align: top; font-size: 0;">
+            <div id="prev" class="subMenuButton" style="display: none; float: right; margin: 5px; width: 80px; font-size: 15px;" onclick="nextprev(-1)">Previous</div>
+          </div>
+          <div class="disableTextHighlight" style="width: 50%; display: inline-block; vertical-align: top; font-size: 0;">
+            <div id="next" class="subMenuButton" style="display: none; margin: 5px; width: 80px; font-size: 15px;" onclick="nextprev(1)">Next</div>
+          </div>
+        </div>
+        <div id="objtable" style="display: block; width: calc(100% - 10px); margin: 5px; vertical-align: top;"></div>
+        <div id="tablewarning" style="display: none; width: calc(100% - 20px); margin: 10px; font-size: 15px;">These values are for inspection only. For scientific studies, please <a style="text-decoration: none;" href="http://cosmos.phy.tufts.edu/~danilo/HFF/Download.html" target="_blank">download</a> and use the catalogs.</div>
+        <div>
+          <img id="figureSED" style="display: inline-block; padding: 0; margin: 0; max-width: 61%; cursor: pointer;" src="" onclick="figurePage('SED')">
+          <img id="figurePFZ" style="display: inline-block; padding: 0; margin: 0; max-width: 35%; cursor: pointer;" src="" onclick="figurePage('PFZ')">
+        </div>
+        <div>
+          <img id="figureRGB1" style="display: inline-block; padding: 20px 0 0 0; margin: 0; max-width: 32%; cursor: pointer;" src="" onclick="figurePage('RGB1')">
+          <img id="figureRGB2" style="display: inline-block; padding: 20px 0 0 0; margin: 0; max-width: 32%; cursor: pointer;" src="" onclick="figurePage('RGB2')">
+          <img id="figureRGB3" style="display: inline-block; padding: 20px 0 0 0; margin: 0; max-width: 32%; cursor: pointer;" src="" onclick="figurePage('RGB3')">
+        </div>
+        <div>
+          <img id="figureDetection" style="display: none; padding: 0; margin: 0; max-width: 32%; cursor: pointer;" src="" onclick="figurePage('Detection')">
+          <img id="figureSegmentation" style="display: none; padding: 0; margin: 0; max-width: 32%; cursor: pointer;" src="" onclick="figurePage('Segmentation')">
+          <img id="figureMagnification" style="display: none; padding: 0; margin: 0; max-width: 36%; cursor: pointer;" src="" onclick="figurePage('Magnification')">
+        </div>
+        <div style="display: block; width: calc(100% - 20px); margin: 10px;">
+          <img id="figinfo" src="none" style="display: none; max-width: 100%;">
+        </div>
+    </div>
+    <div id="mobileTop" style="position: fixed; top: 0; left: 0; width: 100%; background: white; z-index: 1000; font-size: 0;"></div>
+    <div id="figPageBackground" class="figureZoomInBackground" style="height: 100%; width: 100%; margin: 0; padding: 0;" onclick="hideFigPage()"></div>
+    <div id="figPage" class="figureZoomIn" style="background: transparent; border: none; margin: 0; padding: 0;" onclick="hideFigPage()"></div>
+  </body>
+  <script>
+    var fieldName = "";
+    var mainDir = "";
+    var objid = 0;
+    var maxID = 0;
+    var maxBCG = 20000;
+    var largeFigs;
+    var catNames;
+    var tableNames;
+    var figures;
+    var figNames;
+    var data;
+    var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+
+    fields =  ["A1063-clu", "A1063-par", "A2744-clu", "A2744-par", "A370-clu", "A370-par", "M0416-clu", "M0416-par", "M0717-clu", "M0717-par", "M1149-clu", "M1149-par"]
+
+    window.onload = function() {
+      if (mobile) {
+        document.getElementById("maincontainer").className = "onecolumn";
+        document.getElementById("tablewarning").style.fontSize = "12px";
+        document.getElementById("figureRGB1").style.padding = "0";
+        document.getElementById("figureRGB2").style.padding = "0";
+        document.getElementById("figureRGB3").style.padding = "0";
+        document.getElementById("toptitle").style.color = "white";
+        document.getElementById("prev").style.border = "none";
+        document.getElementById("prev").style.color = "white";
+        document.getElementById("next").style.border = "none";
+        document.getElementById("next").style.color = "white";
+      }
+      var url = window.location.search.substring();
+      var portrait = $(window).height()>$(window).width();
+      if (url.includes("?")) {
+        var input = url.split("?");
+        for (j=0; j<input.length; j++) {
+          if (input[j].includes("&") & !input[j].includes(fieldName+"/")) {
+            inputPairs = input[j].split("&");
+          } else {
+            inputPairs = [input[j]];
+          }
+          for (i=0; i<inputPairs.length; i++) {
+            if (inputPairs[i] != "" & inputPairs[i].includes("=")) {
+              inputKey = inputPairs[i].split("=")[0]
+              inputValue = inputPairs[i].split("=")[1]
+              if (inputKey != "" && inputValue != "") {
+                goodKey = ["field", "fieldname"];
+                if (goodKey.includes(inputKey.toLowerCase())) {
+                  if (fields.includes(inputValue)) {
+                    fieldName = inputValue;
+                  } else {
+                    if (inputValue.toLowerCase().includes("a")) {
+                      fieldName = inputValue.replace("a","A").replace("AbellS","A").replace("ABELL","A").replace("Abell","A");
+                    } else if (inputValue.toLowerCase().includes("m")) {
+                      fieldName = inputValue.replace("m","M").replace("Macs","M").replace("MACS","M").replace("Macsj","M").replace("MACSJ","M");
+                    }
+                    if (!fieldName.includes("clu") & !fieldName.includes("par")) {
+                      fieldName = fieldName + "clu";
+                    }
+                    if (fieldName.split("-").length != 2) {
+                      fieldName = fieldName.replace("par", "-par").replace("clu","-clu");
+                    }
+                  }
+                }
+                goodKey = ["id", "objid", "obj"];
+                if (goodKey.includes(inputKey.toLowerCase())) {
+                  objid = Number(inputValue);
+                }
+              }
+            }
+          }
+        }
+      }
+      if (fields.includes(fieldName) & !isNaN(objid)) {
+        document.getElementById("prev").style.display = "inline-block";
+        document.getElementById("next").style.display = "inline-block";
+        document.getElementById("tablewarning").style.display = "block";
+        let stateObj = {
+          foo: "",
+        };
+        history.replaceState(stateObj, "page 2", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/object_pages/?field="+fieldName+"&id="+objid);
+        setup();
+        if (mobile) {
+          document.getElementById("mobileTop").style.height = $(prev).position().top+$(prev).height()+"px";
+          document.getElementById("mobileTop").innerHTML = '<div id="topmobiletitle" style="width: 100%; margin: 5px 0 5px 0; font-size: 20px; text-align: center;">'+fieldName+'&nbsp;&nbsp;&nbsp;Object ID: '+objid+'</div><div style="width: 100%"><div class="disableTextHighlight" style="width: 50%; display: inline-block; vertical-align: top; font-size: 0;"><div id="mobileprev" class="subMenuButton" style="display: none; float: right; margin: 5px; width: 80px; font-size: 15px;" onclick="nextprev(-1)">Previous</div></div><div class="disableTextHighlight" style="width: 50%; display: inline-block; vertical-align: top; font-size: 0;"><div id="mobilenext" class="subMenuButton" style="display: none; margin: 5px; width: 80px; font-size: 15px; float: left;" onclick="nextprev(1)">Next</div></div></div>';
+          document.getElementById("mobileTop").style.display = "block";
+          document.getElementById("mobileprev").style.display = "inline-block";
+          document.getElementById("mobilenext").style.display = "inline-block";
+        }
+      } else {
+        document.getElementById("tablewarning").innerHTML = "Object page unavailable";
+        document.getElementById("tablewarning").style.display = "block";
+      }
+    }
+
+    function setup() {
+      // field info JSON file, includes catalog data
+      var xhReq = new XMLHttpRequest();
+      var infourl = "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/"+fieldName+"/JSON/info.json?version=1.41";
+      xhReq.open("GET", infourl, false);
+      xhReq.send(null);
+      var infoJSON = JSON.parse(xhReq.responseText);
+
+      maxID = infoJSON.maxID;
+      maxBCG = infoJSON.bcgs;
+      largeFigs = infoJSON.largeFigs;
+      var IDs = [];
+      for (o=0; o<infoJSON.data.length; o++) {
+        IDs.push(Number(infoJSON.data[o]["id"]));
+      }
+
+      indJSON = [];
+      for (i=0; i<IDs.length; i++) {
+        indJSON.push(i);
+      }
+
+      var group = infoJSON.group;
+      var xhReq = new XMLHttpRequest();
+      var groupurl = "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/JSON/"+group+".json?version=1.21";
+      xhReq.open("GET", groupurl, false);
+      xhReq.send(null);
+      var groupJSON = JSON.parse(xhReq.responseText);
+
+      mainDir = groupJSON.main;
+      catNames = groupJSON.table.catName;
+      tableNames = groupJSON.table.tableName;
+      figures = groupJSON.figures;
+      figNames = groupJSON.figures.name;
+      data = infoJSON.data;
+
+      if (IDs.includes(objid)) {
+        if (objid == 1) {
+          if (mobile) {
+            document.getElementById("mobileprev").onclick = function(){nextprev(0)};
+            document.getElementById("mobileprev").style.background = "#c8c8c8";
+            document.getElementById("mobileprev").style.cursor = "default";
+          } else {
+            document.getElementById("prev").onclick = function(){nextprev(0)};
+            document.getElementById("prev").style.background = "#c8c8c8";
+            document.getElementById("prev").style.cursor = "default";
+          }
+        } else if (objid == maxBCG) {
+          if (mobile) {
+            document.getElementById("mobilenext").onclick = function(){nextprev(0)};
+            document.getElementById("mobilenext").style.background = "#c8c8c8";
+            document.getElementById("mobilenext").style.cursor = "default";
+          } else {
+            document.getElementById("next").onclick = function(){nextprev(0)};
+            document.getElementById("next").style.background = "#c8c8c8";
+            document.getElementById("next").style.cursor = "default";
+          }
+        }
+        document.getElementById("title").innerHTML = fieldName+" | "+objid;
+        document.getElementById("toptitle").innerHTML = fieldName+"&nbsp;&nbsp;&nbsp;Object ID: "+objid;
+        if (mobile) {
+          document.getElementById("figinfo").style.width = Math.min(500, $(window).width() - 30) + "px";
+        } else {
+          document.getElementById("figinfo").style.width = Math.min(500, $(window).width()/2. - 20) + "px";
+        }
+        if (objid > 20000) {
+          document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo_bcg.png";
+        } else {
+          if (largeFigs.includes(objid)) {
+            document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo_large.png";
+          } else {
+            document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo.png";
+          }
+        }
+        document.getElementById("figinfo").style.display = "block";
+
+        updateTable(objid);
+
+        idtxt = objid.toString();
+        idx = Math.floor(objid/100)*100;
+        document.getElementById("figureSED").src = figures.url[0].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figurePFZ").src = figures.url[1].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureRGB1").src = figures.url[2].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureRGB2").src = figures.url[3].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureRGB3").src = figures.url[4].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        if (objid < 20000) {
+          document.getElementById("figureDetection").src = figures.url[5].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+          document.getElementById("figureSegmentation").src = figures.url[5].replace('det_','seg_').replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+          document.getElementById("figureMagnification").src = figures.url[6].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+          document.getElementById("figureDetection").style.display = "inline-block";
+          document.getElementById("figureSegmentation").style.display = "inline-block";
+          document.getElementById("figureMagnification").style.display = "inline-block";
+        } else {
+          document.getElementById("figureDetection").style.display = "none";
+          document.getElementById("figureSegmentation").style.display = "none";
+          document.getElementById("figureMagnification").style.display = "none";
+        }
+      } else {
+        document.getElementById("next").style.display = "none";
+        document.getElementById("prev").style.display = "none";
+        document.getElementById("mobileTop").style.display = "none";
+        document.getElementById("tablewarning").innerHTML = "Object page unavailable";
+      }
+    }
+
+    function figurePage(fig) {
+      riseoverrun = $(document.getElementById("figure"+fig)).height() / $(document.getElementById("figure"+fig)).width();
+      if (riseoverrun*0.8*$(window).width() > 0.8*$(window).height()) {
+        document.getElementById("figPage").innerHTML = "<img style='height: "+0.8*$(window).height()+"px; width: "+0.8*$(window).height()/riseoverrun+"px; margin: 0; padding: 0;' src='"+document.getElementById("figure"+fig).src+"'>";
+      } else {
+        document.getElementById("figPage").innerHTML = "<img style='height: "+0.8*$(window).width()*riseoverrun+"px; width: "+0.8*$(window).width()+"px; margin: 0; padding: 0;' src='"+document.getElementById("figure"+fig).src+"'>";
+      }
+      document.getElementById("figPageBackground").style.display = "block";
+      document.getElementById("figPage").style.display = "block";
+      window.scrollTo(0,0);
+    }
+
+    function hideFigPage() {
+      document.getElementById("figPage").style.display = "none";
+      document.getElementById("figPageBackground").style.display = "none";
+    }
+
+    function updateTable(id) {
+      if (objid > 20000) {
+        index = indJSON[maxID+id-20001];
+      } else {
+        index = indJSON[id-1];
+      }
+      tabletxt = '<table vertical-align="middle" width="100%" style="margin: 0px; table-layout: fixed;">';
+      count = 0;
+      tableFilterWidth = $(window).width()/2. * 0.20 - 12.5;
+      tableDataWidth = $(window).width()/2. * 0.30 - 12.5;
+      for (t=0; t<catNames.length; t++) {
+        if (count%2 == 0) { //even
+          tabletxt += '<tr>';
+        }
+        // RA/DEC: 5 significant figures
+        if (tableNames[t] == 'RA' | tableNames[t] == 'DEC') {
+          tabletxt += '<th style="width: '+tableFilterWidth+'px; max-width: '+tableFilterWidth+'px;"><b>'+tableNames[t]+'</b></th><th style="width: '+tableDataWidth+'px; max-width: '+tableDataWidth+'px; ">'+data[index][catNames[t]].toFixed(5)+'</th>';
+        } else if (tableNames[t] == 'AGN Flag') {
+          tabletxt += '<th id="agn1" style="width: '+tableFilterWidth+'px; max-width: '+tableFilterWidth+'px;"><b>'+tableNames[t]+'</b></th><th id="agn2" style="width: '+tableDataWidth+'px; max-width: '+tableDataWidth+'px; ">N/A</th>';
+        } else {
+          tabletxt += '<th style="width: '+tableFilterWidth+'px; max-width: '+tableFilterWidth+'px;"><b>'+tableNames[t]+'</b></th><th style="width: '+tableDataWidth+'px; max-width: '+tableDataWidth+'px; ">'+data[index][catNames[t]]+'</th>';
+        }
+        if (count%2 != 0) { //odd
+          tabletxt += '</tr>';
+        }
+        count += 1;
+      }
+      // if odd number of catalog entries, add blank cell at end of table
+      if (catNames.length%2 != 0) {
+        tabletxt += '<th width="20%"></th><th width="30%"></th></tr>';
+      }
+      tabletxt += '</table>';
+      document.getElementById("objtable").innerHTML = tabletxt;
+    }
+
+    function newobj(id) {
+      document.getElementById("title").innerHTML = fieldName+" | "+id;
+      document.getElementById("toptitle").innerHTML = fieldName+"&nbsp;&nbsp;&nbsp;Object ID: "+id;
+      if (mobile) {
+        document.getElementById("topmobiletitle").innerHTML = fieldName+"&nbsp;&nbsp;&nbsp;Object ID: "+id;
+      }
+      if (id > 20000) {
+        document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo_bcg.png";
+      } else {
+        if (largeFigs.includes(id)) {
+          document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo_large.png";
+        } else {
+          document.getElementById("figinfo").src = mainDir+"object_pages/stampinfo.png";
+        }
+      }
+
+      updateTable(id);
+
+      idtxt = id.toString();
+      idx = Math.floor(id/100)*100;
+      document.getElementById("figureSED").src = figures.url[0].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+      document.getElementById("figurePFZ").src = figures.url[1].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+      document.getElementById("figureRGB1").src = figures.url[2].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+      document.getElementById("figureRGB2").src = figures.url[3].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+      document.getElementById("figureRGB3").src = figures.url[4].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+      if (id < 20000) {
+        document.getElementById("figureDetection").src = figures.url[5].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureSegmentation").src = figures.url[5].replace('det_','seg_').replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureMagnification").src = figures.url[6].replace(/fieldname/g, fieldName).replace(/objectid/g, idtxt).replace(/index/, idx.toString());
+        document.getElementById("figureDetection").style.display = "inline-block";
+        document.getElementById("figureSegmentation").style.display = "inline-block";
+        document.getElementById("figureMagnification").style.display = "inline-block";
+      } else {
+        document.getElementById("figureDetection").style.display = "none";
+        document.getElementById("figureSegmentation").style.display = "none";
+        document.getElementById("figureMagnification").style.display = "none";
+      }
+    }
+
+    function nextprev(n) {
+      if (n == 0) { return; }
+      objid = objid + n;
+      if (objid == 1) {
+        if (mobile) {
+          document.getElementById("mobileprev").onclick = function(){nextprev(0)};
+          document.getElementById("mobileprev").style.background = "#c8c8c8";
+          document.getElementById("mobileprev").style.cursor = "default";
+        } else {
+          document.getElementById("prev").onclick = function(){nextprev(0)};
+          document.getElementById("prev").style.background = "#c8c8c8";
+          document.getElementById("prev").style.cursor = "default";
+        }
+      } else if (objid == maxBCG) {
+        if (mobile) {
+          document.getElementById("mobilenext").onclick = function(){nextprev(0)};
+          document.getElementById("mobilenext").style.background = "#c8c8c8";
+          document.getElementById("mobilenext").style.cursor = "default";
+        } else {
+          document.getElementById("next").onclick = function(){nextprev(0)};
+          document.getElementById("next").style.background = "#c8c8c8";
+          document.getElementById("next").style.cursor = "default";
+        }
+      } else {
+        if (mobile) {
+          document.getElementById("mobileprev").onclick = function(){nextprev(-1)};
+          document.getElementById("mobileprev").style.background = "white";
+          document.getElementById("mobileprev").style.cursor = "pointer";
+          document.getElementById("mobilenext").onclick = function(){nextprev(1)};
+          document.getElementById("mobilenext").style.background = "white";
+          document.getElementById("mobilenext").style.cursor = "pointer";
+        } else {
+          document.getElementById("prev").onclick = function(){nextprev(-1)};
+          document.getElementById("prev").style.background = "white";
+          document.getElementById("prev").style.cursor = "pointer";
+          document.getElementById("next").onclick = function(){nextprev(1)};
+          document.getElementById("next").style.background = "white";
+          document.getElementById("next").style.cursor = "pointer";
+        }
+      }
+      if (objid == maxID+1) { objid = 20001; }
+      if (objid == 20000) { objid = maxID; }
+      newobj(objid);
+      let stateObj = {
+        foo: "",
+      };
+      history.replaceState(stateObj, "page 2", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/object_pages/?field="+fieldName+"&id="+objid);
+    }
+
+
+    $(window).on("resize", function() {
+      if (mobile) {
+        document.getElementById("figinfo").style.width = Math.min(500, $(window).width() - 30) + "px";
+      } else {
+        document.getElementById("figinfo").style.width = Math.min(500, $(window).width()/2. - 20) + "px";
+      }
+      if ($(figureRGB1).position().left < $(window).width()/2.) {
+        document.getElementById("figureRGB1").style.padding = "0";
+        document.getElementById("figureRGB2").style.padding = "0";
+        document.getElementById("figureRGB3").style.padding = "0";
+        if ($(figureDetection).position().left < $(window).width()/2.) {
+          document.getElementById("figureDetection").style.padding = "0";
+          document.getElementById("figureSegmentation").style.padding = "0";
+          document.getElementById("figureMagnification").style.padding = "0";
+        } else {
+          document.getElementById("figureDetection").style.padding = "20px 0 0 0";
+          document.getElementById("figureSegmentation").style.padding = "20px 0 0 0";
+          document.getElementById("figureMagnification").style.padding = "20px 0 0 0";
+        }
+      } else {
+        document.getElementById("figureRGB1").style.padding = "20px 0 0 0";
+        document.getElementById("figureRGB2").style.padding = "20px 0 0 0";
+        document.getElementById("figureRGB3").style.padding = "20px 0 0 0";
+      }
+      updateTable(objid);
+    }).trigger("resize");
+
+  </script>
+</html>

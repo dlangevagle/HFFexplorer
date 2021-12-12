@@ -3,7 +3,7 @@
 ### Website Files:
 <b>index.html</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-Front-end HTML/CSS/JavaScript for rendering the website.
+Front-end HTML/CSS for rendering the website.
 <br>
 <br>
 <b>astro-id.js</b>
@@ -14,6 +14,12 @@ JavaScript functions for handling all the backend website functionality.
 <b>JSON/hff.json</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
 JSON file with information pertaining to the HFF field and catalogs.
+<br>
+<br>
+<b>object_pages/index.html</b>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+Front-end HTML/CSS for rendering the individual source informational webpage. Example:
+[A2744-clu, id=3501](http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/object_pages/?field=A2744-clu&id=3501)
 <br>
 <br>
 <b>A2744-clu/images/</b>
