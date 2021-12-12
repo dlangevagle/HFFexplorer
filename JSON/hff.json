@@ -1,0 +1,33 @@
+{ "group": "hff",
+  "main": "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/",
+  "table": {
+    "catName": ["ra", "dec", "x", "y", "z_spec", "z_phot", "mag814", "mag160", "use", "star", "uv", "vj", "mass", "sfr", "ssfr", "magn"],
+    "defaultName": ["ra", "dec", "z_spec", "z_phot", "mag814", "mag160", "use", "star", "uv", "vj", "mass", "sfr", "ssfr", "magn"],
+    "tableName": ["RA", "DEC", "X", "Y", "z<sub>spec</sub>", "z<sub>phot</sub>", "m<sub>F814W</sub>", "m<sub>F160W</sub>", "Use Flag", "Star Flag", "U-V<sub>Rest</sub>", "V-J<sub>Rest</sub>", "log(M<sub>&#x2609;</sub>)", "log(SFR)", "log(sSFR)", "&#x3BC;"],
+    "tableDescription": ["RA", "DEC", "X", "Y", "Spectroscopic Redshift", "Photometric Redshift", "F814W AB Magnitude", "F160W AB Magnitude", "Use Flag", "Star Flag", "UV Restframe Color", "VJ Resframe Color", "Logarithmic Stellar Mass", "Logarithmic Star Formation Rate", "Logarithmic Specific Star Formation Rate", "Lensing Magnification Factor"]
+  },
+  "figures": {
+    "name": ["SED", "PFZ", "RGB1", "RGB2", "RGB3", "Detection", "Magnification"],
+    "defaultName": ["SED", "PFZ", "RGB1", "RGB2", "RGB3", "Detection", "Magnification"],
+    "url": ["http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/sed_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/pfz_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/rgb1_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/rgb2_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/rgb3_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/det_objectid.png", "http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/fieldname/object_figs/index/mag_objectid.png"]
+  },
+  "data": {
+    "ra": [],
+    "dec": [],
+    "x": [],
+    "y": [],
+    "z_spec": [-99],
+    "z_phot": [-99],
+    "mag814": [-99],
+    "mag160": [-99],
+    "use": ["*", 0, 1],
+    "star": ["*", 0, 1, 2],
+    "uv": [-99],
+    "vj": [-99],
+    "mass": [-99],
+    "sfr": [-99],
+    "ssfr": [-99],
+    "magn": [-1, -50, -99]
+  },
+  "fields": ["A1063-clu", "A1063-par", "A2744-clu", "A2744-par", "A370-clu", "A370-par", "M0416-clu", "M0416-par", "M0717-clu", "M0717-par", "M1149-clu", "M1149-par"]
+}

@@ -1,0 +1,1218 @@
+body {
+  font-family: Open Sans;
+  font-weight: normal;
+  color: #222222;
+  height: 100%;
+  width: 100%;
+  -ms-overflow-style: none;
+}
+table {
+  display: block;
+  width: 100%;
+  border-collapse: collapse;
+  cursor: default;
+  border-radius: 0px;
+  border: none;
+  table-layout:fixed;
+}
+td, th {
+  border: 1px solid #d4d4d4;
+  text-align: center;
+  padding: 3px;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 25%;
+  max-width: 25%;
+  height: 28px;
+}
+a {
+  color: gray;
+}
+a:hover {
+  color: black;
+}
+a:active {
+  color: #2ba6cb;
+}
+button {
+  border: 1px solid #d4d4d4;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+span {
+  display: inline-block;
+  line-height: 24px;
+  height: 25px;
+  background-color: none;
+}
+img {
+  opacity: 1.;
+  filter: alpha(opacity=100);
+  touch-action: manipulation;
+}
+.topLeftContainer {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 300px;
+  background: transparent;
+  overflow: hidden;
+}
+.topButtonsContainer {
+  position: absolute;
+  top: 100px;
+  left: 10px;
+  background: transparent;
+  overflow: hidden;
+}
+.topVertical {
+  position: absolute;
+  top: 1px;
+  height: calc(100% - 2px);
+  width: 1px;
+  vertical-align: bottom;
+  background-color: #d4d4d4;
+  border: none;
+  z-index: 2000;
+  cursor: pointer;
+}
+.fieldInputForm {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  display: inline-block;
+  z-index: 2000;
+}
+.autocomplete {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  width: 100%;
+}
+.autocomplete-items {
+  position: absolute;
+  z-index: 4000;
+  top: 100%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+.autocomplete-items div {
+  padding: 10px 0px 10px 0px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #d4d4d4;
+}
+.search div {
+  padding: 4px;
+  height: 20px;
+  min-width: 117px;
+  font-size: 12px;
+  border: 1px solid #d4d4d4;
+}
+.autocomplete-items div:hover {
+  background-color: #e2e2e2;
+}
+.autocomplete-active {
+  background-color: #4187f5 !important;
+  color: #fff;
+}
+input.field {
+  background-color: white;
+  width: 100%;
+  vertical-align: top;
+  padding-left: 32px;
+  font-size: 18px;
+  border-radius: 0px;
+  border: 1px solid #d4d4d4;
+  text-align: center;
+}
+.searchContainer {
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  height: 49px;
+  display: none;
+  padding: 0;
+  border-radius: 0px;
+  background: #f9f9f9;
+  z-index: 1000;
+  font-size: 0px;
+}
+.searchIDForm {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  vertical-align: middle;
+  z-index: 1000;
+}
+.searchRADECForm {
+  position: relative;
+  width: 100%;
+  margin-top: -1px;
+  vertical-align: middle;
+  z-index: 1000;
+}
+.searchColOne {
+  display: inline-block;
+  text-align: center;
+  line-height: 24px;
+  height: 25px;
+  width: 25%;
+  border: 1px solid #d4d4d4;
+  background: white;
+  cursor: default;
+}
+input.searchInput {
+  position: absolute;
+  left: calc(25% - 1px);
+  margin: 0;
+  padding: 0;
+  height: 25px;
+  width: calc(75% + 1px);
+  margin: 0px;
+  text-align: center;
+  font-size: 14px;
+  display: inline-block;
+  border: 1px solid #d4d4d4;
+  border-radius: 0px;
+  box-sizing: border-box;
+  z-index: 1005;
+}
+.searchHorizontal {
+  position: absolute;
+  left: calc(25% - 1px);
+  width: calc(75% + 1px);
+  height: 1px;
+  color: transparent;
+  background-color: transparent;
+  border: none;
+  z-index: 1005;
+  cursor: text;
+}
+.cursorTrackerContainer {
+  position: relative;
+  margin-top: 0px;
+  width: 100%;
+  display: none;
+  border-radius: 0px;
+  cursor: default;
+  font-size: 0px;
+}
+.cursorContainer {
+  position: relative;
+  height: 25px;
+  background: white;
+  z-index: 1000;
+}
+span.cursorColOne {
+  text-align: center;
+  width: 16%;
+  border: 1px solid #d4d4d4;
+}
+span.cursorColTwo {
+  margin-left: -1px;
+  text-align: center;
+  width: calc(34% + 1px);
+  border: 1px solid #d4d4d4;
+}
+span.cursorColThree {
+  margin-left: -1px;
+  text-align: center;
+  width: calc(16% + 1px);
+  border: 1px solid #d4d4d4;
+}
+span.cursorColFour {
+  margin-left: -1px;
+  text-align: center;
+  width: calc(34% + 1px);
+  border: 1px solid #d4d4d4;
+}
+.buttonsContainer {
+  position: relative;
+  margin-top: 0px;
+  width: 327px;
+  padding: 0px;
+  font-size: 0px;
+}
+.layerButtonContainer {
+  position: relative;
+  height: 32px;
+  padding: 0px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 0px;
+}
+button.layerButton {
+  position: relative;
+  display: inline-block;
+  background: white;
+  align-content: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #d4d4d4;
+  z-index: 1000;
+}
+.mobilePortraitScaleBarContainer {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 16px;
+  vertical-align: top;
+  display: none;
+  font-size: 0px;
+}
+.scaleBarVertical {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  width: 2px;
+  vertical-align: bottom;
+  display: inline-block;
+  color: white;
+  background-color: white;
+  border: none;
+  z-index: 1000;
+  cursor: crosshair;
+}
+.scaleBarHorizontal {
+  position: relative;
+  height: 2px;
+  width: 0px;
+  vertical-align: bottom;
+  display: inline-block;
+  color: white;
+  background-color: white;
+  border: none;
+  z-index: 1000;
+  cursor: crosshair;
+}
+.scaleBarValue {
+  position: relative;
+  margin-left: 8px;
+  font-size: 16px;
+  display: inline-block;
+  color: white;
+  height: 16px;
+  z-index: 1000;
+  cursor: crosshair;
+}
+.scaleBarContainer {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  height: 16px;
+  vertical-align: top;
+  display: none;
+  font-size: 0px;
+}
+button.zoomOutCenterButton {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 32px;
+  width: 32px;
+  display: none;
+  vertical-align: top;
+  background: white;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/zoomoutcenterblue.png?version=1);
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+}
+button.focusCenterButton {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 32px;
+  width: 32px;
+  display: none;
+  vertical-align: top;
+  background: white;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/focuscentergray.png?version=1);
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  cursor: default;
+}
+button.xButton {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 0px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 18px;
+  display: none;
+  vertical-align: top;
+  color: gray;
+  background-color: #c8c8c8;
+  z-index: 1000;
+  cursor: default;
+}
+button.advSrchButtonLeft {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 0;
+  height: 32px;
+  width: 32px;
+  display: none;
+  vertical-align: top;
+  background: transparent;
+  border: none;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/arrowleft2.png?version=1.2);
+  background-size: 16px 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  cursor: pointer;
+}
+button.advSrchButtonLeft:focus {
+  border: none;
+}
+button.advSrchButton {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  height: 32px;
+  width: 32px;
+  display: none;
+  vertical-align: top;
+  background: white;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/advancedSearchwhite.png?version=1);
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  cursor: pointer;
+}
+button.advSrchButtonRight {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 0;
+  height: 32px;
+  width: 32px;
+  display: none;
+  vertical-align: top;
+  background: transparent;
+  border: none;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/arrowright2.png?version=1.2);
+  background-size: 16px 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1000;
+  cursor: pointer;
+}
+button.advSrchButtonRight:focus {
+  border: none;
+}
+.loadingContainer {
+  position: absolute;
+  top: calc(50% - 16px);
+  left: calc(50% - 16px);
+  padding: 0px;
+  height: 32px;
+  width: 32px;
+  line-height: 32px;
+  text-align: center;
+  font-size: 18px;
+  vertical-align: top;
+  display: inline-block;
+  color: gray;
+  background-color: transparent;
+  cursor: pointer;
+}
+.zoomControlContainer {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 0px;
+  width: 32px;
+  display: block;
+  background: transparent;
+  z-index: 1000;
+  font-size: 0px;
+}
+button.zoomButton {
+  position: relative;
+  margin: 0;
+  padding: 0 0 5px 0;
+  height: 32px;
+  width: 32px;
+  background: white;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+}
+.zoomLevelContainer {
+  position: relative;
+  margin-top: 1px;
+  width: 32px;
+  display: block;
+  z-index: 1000;
+}
+input.zoomLevel {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 18px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 0px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  cursor: default;
+  color: transparent;
+  text-shadow: 0 0 0 white;
+  z-index: 1000;
+}
+input.zoomLevel:focus {
+  background: transparent;
+  outline: none;
+  border: 1px solid #d4d4d4;
+}
+.objectInfo {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  height: 52px;
+  width: 300px;
+  padding: 5px 0px 5px 0px;
+  border-radius: 0px;
+  background: white;
+  border: 1px solid #d4d4d4;
+  z-index: 1002;
+}
+.objectHeader {
+  position:relative;
+  height: 22px;
+  width: 100%;
+  text-align: center;
+  cursor: default;
+}
+.objectLink {
+  position: relative;
+  height: 22px;
+  width: auto;
+  max-width: calc(100% - 104px);
+  margin: 0 auto -5px auto;
+  text-align: center;
+  cursor: default;
+}
+button.tableButton {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/tablewhite.png?version=1);
+  background-size: 32px 32px;
+  height: 32px;
+  width: 32px;
+}
+button.figuresButton {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/figureswhite.png?version=1);
+  background-size: 32px 32px;
+  height: 32px;
+  width: 32px;
+}
+.objectTableContainer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  min-height: 79px;
+  max-height: calc(100% - 350px);
+  width: 300px;
+  max-width: 100%;
+  background: transparent;
+  border-radius: 0px;
+  border: none;
+  overflow-y: auto;
+}
+.objectTable {
+  position: relative;
+  width: 100%;
+  max-height: calc(100% - 50px);
+  margin: 0px auto 52px auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  z-index: 1000;
+}
+.figuresContainer {
+  position: absolute;
+  left: 310px;
+  bottom: 10px;
+  height: 24%;
+  min-height: 79px;
+  max-height: 277px;
+  max-width: calc(100% - 310px);
+  vertical-align: bottom;
+  background: transparent;
+  overflow-x: scroll;
+  white-space: nowrap;
+  font-size: 0px;
+}
+.mobilePortraitFiguresContainerBackground {
+  position: absolute;
+  left: 0px;
+  bottom: 52px;
+  min-height: 79px;
+  height: 16%;
+  width: 100%;
+  display: none;
+  background: #e1e1e1;
+  font-size: 0px;
+  border: 1px solid #d4d4d4;
+  z-index: 1001;
+}
+.figure {
+  position: relative;
+  max-height: 100%;
+  max-width: 1000000%;
+  margin: 0px;
+  padding: 10px 10px 5px 10px;
+  background: white;
+  z-index: 1500;
+  display: none;
+  border: 1px solid #d4d4d4;
+}
+.lesspadding {
+  padding: 2px 2px 1px 2px;
+}
+.figureZoomInBackground {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+   background: black;
+   opacity: 0.35;
+   filter: alpha(opacity: 0.35);
+   z-index: 3100;
+   display: none;
+}
+.zoomFigsContainer {
+  position: absolute;
+  display: none;
+  left: 0px;
+  height: 80%;
+  min-height: 50%;
+  max-height: 80%;
+  width: 100%;
+  vertical-align: bottom;
+  background: transparent;
+  overflow-x: scroll;
+  cursor: grab;
+  white-space: nowrap;
+  font-size: 0px;
+  z-index: 3200;
+}
+.figureZoomIn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%;
+  max-height: 80%;
+  padding: 10px 10px 5px 10px;
+  background: white;
+  border: 1px solid #d4d4d4;
+  opacity: 1;
+  filter: alpha(opacity: 1);
+  z-index: 3100;
+  display: none;
+}
+.tempAlert {
+  position: absolute;
+  top: 10px;
+  left: 320px;
+  height: 32px;
+  line-height: 32px;
+  text-align: left;
+  padding: 0 10px 0 10px;
+  background: transparent;
+  color: white;
+  opacity: 0.95;
+  filter: alpha(opacity: 95);
+  transition: opacity .5s ease-out;
+  -moz-transition: opacity .5s ease-out;
+  -webkit-transition: opacity .5s ease-out;
+  -o-transition: opacity .5s ease-out;
+  z-index: 2500;
+  display: none;
+}
+button.menuButton {
+  background: white;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/menuwhite.png?version=1);
+  background-size: 30px 30px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  vertical-align: top;
+  height: 32px;
+  width: 32px;
+  z-index: 3000;
+}
+.menuContainer {
+  position: absolute;
+  top: 42px;
+  left: 10px;
+  width: 300px;
+  background: white;
+  display: none;
+  border: 1px solid #d4d4d4;
+  z-index: 3000;
+}
+.subMenuHeaders {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+.subMenuHeader {
+  position: absolute;
+  top: 10px;
+  left: 310px;
+  height: 32px;
+  background: white;
+  vertical-align: top;
+  display: none;
+  border: 1px solid #d4d4d4;
+  z-index: 3000;
+  font-size: 0px;
+}
+.brightnessIcon {
+  background: white;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/brightness.png?version=1);
+  background-size: 20px 20px;
+  position: relative;
+  display: inline-block;
+  margin: 10px 5px 5px 10px;
+  height: 20px;
+  width: 20px;
+  vertical-align: bottom;
+}
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  display: inline-block;
+  margin: 0px 10px 9px 0px;
+  width: calc(100% - 55px);
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  vertical-align: bottom;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4187f5;
+  cursor: pointer;
+  z-index: 4000;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #4187f5;
+  cursor: pointer;
+  z-index: 4000;
+}
+.advancedSearchButtons {
+  position: absolute;
+  top: 0px;
+  left: 116px;
+  font-size: 0px;
+  height: 100%;
+  width: calc(100% - 116px);
+  display: inline-block;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.subMenus {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+.subMenu {
+  position: absolute;
+  top: 15px;
+  left: 315px;
+  background: white;
+  vertical-align: top;
+  display: none;
+  border: 1px solid #d4d4d4;
+  z-index: 3000;
+  overflow: scroll;
+  font-size: 0px;
+}
+.menuHeaderTextbox {
+  position: relative;
+  margin: 0 0 0 10px;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  background-color: white;
+  color: black;
+  cursor: default;
+  vertical-align: bottom;
+  font-size: 16px;
+}
+.menuText {
+  position: relative;
+  margin: 5px;
+  display: inline-block;
+  height: 20px;
+  line-height: 20px;
+  background-color: white;
+  color: black;
+  cursor: default;
+}
+.circleContainer {
+  display: inline-block;
+  margin: 0 0 5px 10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  border: 2px solid white;
+  background: white;
+  vertical-align: bottom;
+  background: transparent;
+}
+.menuAlert {
+  position: relative;
+  margin: 5px 10px 5px 10px;
+  width: calc(100% - 20px);
+  display: block;
+  background-color: white;
+  color: black;
+  cursor: default;
+  font-size: 12px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+.menuCheckboxes {
+  position: relative;
+  margin: 5px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: bottom;
+  cursor: default;
+}
+.menuCheckboxes input {
+  position: relative;
+  padding: 0;
+  margin: 6px 0 0 0;
+  height: 14px;
+  display: inline-block;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+.menuCheckboxes span {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  height: 20px;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+.menuColorBox {
+  position: relative;
+  margin: 5px;
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  cursor: default;
+  vertical-align: top;
+  border: 1px solid #d4d4d4;
+}
+input.menuInput {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  padding: 0 5px 0 5px;
+  height: 20px;
+  line-height: 20px;
+  background-color: white;
+  border-radius: 0px;
+  color: black;
+  vertical-align: top;
+  font-size: 12px;
+}
+input.menuFilterBounds {
+  text-align: center;
+  width: 40px;
+  padding: 0;
+}
+input.focusCircleColor {
+  width: calc(100% - 175px);
+  margin: 5px 0 5px 5px;
+}
+input.advancedSearchName {
+  border: none;
+  height: 20px;
+  width: calc(100% - 155px);
+  line-height: 20px;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0 10px 5px;
+  border: 1px solid #d4d4d4;
+}
+input.advancedSearchColor {
+  width: calc(100% - 180px);
+  border: 1px solid #d4d4d4;
+  margin-right: 0;
+}
+.markersFilter {
+  margin: 5px;
+  width: calc(100% - 10px);
+  border: 1px solid #d4d4d4;
+  font-size: 0px;
+}
+.markersFilterName {
+  border: none;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
+}
+.advancedSearchFilter {
+  margin: 5px;
+  width: calc(100% - 10px);
+  border: 1px solid #d4d4d4;
+  font-size: 0px;
+}
+.advancedSearchFilterName {
+  border: none;
+  height: 20px;
+  line-height: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
+}
+.advancedSearchList {
+  margin: 5px;
+  height: 57px;
+  width: calc(100% - 10px);
+  border: 1px solid #d4d4d4;
+  font-size: 0px;
+}
+.textareaList {
+  height: 100%;
+  width: 100%;
+  line-height: 18px;
+  margin: 0;
+  padding: 3px 5px 3px 5px;
+  vertical-align: top;
+  border: none;
+  resize: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+  box-shadow: none !important;
+}
+.subMenuButton {
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  height: 20px;
+  width: 55px;
+  line-height: 18px;
+  text-align: center;
+  background: white;
+  vertical-align: top;
+  border: 1px solid #d4d4d4;
+  cursor: pointer;
+  font-size: 11px;
+}
+.menuVertClose {
+  margin-bottom: 0px;
+}
+.menuLeftEdge {
+  margin-left: 10px;
+}
+.menuRightEdge {
+  margin-right: 10px;
+}
+input.menuVertClose {
+  margin-bottom: 0px;
+}
+input.menuLeftEdge {
+  margin-left: 10px;
+}
+input.menuRightEdge {
+  margin-right: 10px;
+}
+.verticalLine {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  width: 1px;
+  background-color: #d4d4d4;
+}
+.horizontalLine {
+  position: relative;
+  display: block;
+  margin: 0;
+  height: 2px;
+  background-color: #d4d4d4;
+}
+.settingsOption {
+  position: relative;
+  margin: 0;
+  display: inline-block;
+  width: calc(100% / 3);
+  height: 30px;
+  line-height: 30px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: top;
+}
+.settingsContainer {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  background: white;
+  font-size: 0px;
+  vertical-align: bottom;
+}
+.advancedSearch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 533px;
+  width: 282px;
+}
+.advSearch {
+  font-size: 0px;
+  width: 100%;
+  min-width: 282px;
+}
+button.advancedSearchOption {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0px;
+  background-color: white;
+  text-align: center;
+  cursor: pointer;
+}
+.keyboardShortcuts {
+  position: relative;
+  margin: 0;
+  height: 577px;
+  width: 282px;
+  background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/keyboardshortcuts.png?version=1.1);
+  background-size: 100% 100%;
+  background-repeat: none;
+}
+.menuOption {
+  position: relative;
+  display: none;
+  margin: 0;
+  height: 32px;
+  width: 100%;
+  font-size: 0px;
+}
+.menuOptionIcon {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  text-align: center;
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+.menuOptionIconBlue {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: none;
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+  text-align: center;
+  background-color: white;
+  background-size: 32px 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+  cursor: pointer;
+}
+.menuOptionText {
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  line-height: 32px;
+  width: calc(100% - 32px);
+  padding: 0 10px 0 10px;
+  vertical-align: bottom;
+  font-size: 16px;
+  cursor: pointer;
+}
+.menuBackground {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 1900;
+  background: black;
+  opacity: 0.35;
+  filter: alpha(opacity=35);
+  display: none;
+}
+.disableTextHighlight {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+.enableTextHighlight {
+  -webkit-touch-callout: text; /* iOS Safari */
+  -webkit-user-select: text; /* Safari */
+  -khtml-user-select: text; /* Konqueror HTML */
+  -moz-user-select: text; /* Firefox */
+  -ms-user-select: text; /* Internet Explorer/Edge */
+  user-select: text;
+}
+/* remove spin buttons on input fields */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none !important;
+}
+input[type=text] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none !important;
+}
+/* change placeholder text color for input fields (not working for Firefox...) */
+input.field::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: black;
+}
+input.field::placeholder { /* Firefox 19+ */
+  color: #000;
+}
+input.field:-ms-input-placeholder { /* IE 10+ */
+  color: black;
+}
+input.zoomLevel::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+input.zoomLevel::placeholder { /* Firefox 19+ */
+  color: #ffffff;
+}
+input.zoomLevel:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+input:focus {
+  border: 1px solid #b3b3b3;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+button:focus {
+  border: 1px solid #b3b3b3;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+div:focus {
+  border: 1px solid #b3b3b3;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.loader {
+  border: 4px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 4px solid #4187f5;
+  width: 28px;
+  height: 28px;
+  margin: 2;
+  -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  animation: spin 1.5s linear infinite;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.twocolumns {
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2;
+  -webkit-column-gap: 10px;
+  -moz-column-gap: 10px;
+  column-gap: 10px;
+}
+
+.onecolumn {
+  -webkit-column-count: 1;
+  -moz-column-count: 1;
+  column-count: 1;
+  -webkit-column-gap: 0;
+  -moz-column-gap: 0;
+  column-gap: 0;
+}

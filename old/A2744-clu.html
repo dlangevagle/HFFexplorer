@@ -1,0 +1,653 @@
+
+<!doctype html>
+<html lang="en-US" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>HFFDS | A2744-clu</title>
+    <link rel="shortcut icon" type="image/png" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/HFFDS-icon2.png">
+    <!--<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />-->
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/leaflet.css" />
+    <link rel="stylesheet" id="open-sans-css" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.4.2" type="text/css" media="all"/>
+    <link rel="stylesheet" id="foundation-app-css" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/wp-content/themes/hffds/stylesheets/app.css" type="text/css" media="all"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=4.4.2"></script>
+
+    <style>
+      h1, h2, h3, h4, h5{
+        font-family: Open Sans;
+        font-weight: normal;
+        color: #222222;
+      }
+      body{
+        font-family: Open Sans;
+        font-weight: normal;
+        color: #222222;
+      }
+      a{
+        color: gray;
+      }
+      a:hover{
+        color: black;
+      }
+      a:active{
+        color: #2BA6CB;
+      }
+      .top-nav {
+        background-color: #4D4D4D;
+      }
+      .top-nav > li > a {
+        color: #E6E6E6 !important;
+      }
+      .top-nav > li > a:hover {
+        color: #E6E6E6 !important;
+      }
+      #main article {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+
+  <body class="page page-id-10 page-template page-template-page-full-width page-template-page-full-width-php">
+    <div class="row container">
+      <div class="twelve columns">
+        <header role="banner" id="top-header">
+          <div class="siteinfo">
+              <h1 style="margin-bottom: -7px; margin-top: 12px"><a class="brand" id="logo" href="http://cosmos.phy.tufts.edu/~danilo/HFF/Home.html"><img src="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-banner.png" title="HFFDS" alt="HFFDS" /></a></h1>
+          </div>
+          <ul id="menu-main" class="top-nav nav-bar">
+            <li id="menu-item-1"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/Home.html">Home</a></li>
+            <li id="menu-item-2"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/Team.html">Team</a></li>
+            <li id="menu-item-3"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/Science.html">Science</a></li>
+            <li id="menu-item-4"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/Publications.html">Publications</a></li>
+            <li id="menu-item-5"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/Download.html">Download</a></li>
+            <li id="menu-item-6" class="active"><a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer.html">HFFexplorer</a></li>
+          </ul>
+        </header>
+      </div>
+      <div id="content" class="clearfix">
+        <div id="main" class="twelve columns clearfix" role="main">
+          <article id="post" class="clearfix page type-page status-publish hentry" role="article">
+
+            <header>
+              <h5 style="width: 800px; margin-left: 5px; margin-top: -3px">
+              <b>A2744</b>&nbsp;<a style="color: #2BA6CB" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu.html"><b>clu</b></a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-par.html">par</a>&nbsp;&nbsp;&nbsp;
+              M0416&nbsp;<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M0416-clu.html">clu</a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M0416-par.html">par</a>&nbsp;&nbsp;&nbsp;
+              M0717&nbsp;<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M0717-clu.html">clu</a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M0717-par.html">par</a>&nbsp;&nbsp;&nbsp;
+              M1149&nbsp;<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M1149-clu.html">clu</a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/M1149-par.html">par</a>&nbsp;&nbsp;&nbsp;
+              A1063&nbsp;<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A1063-clu.html">clu</a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A1063-par.html">par</a>&nbsp;&nbsp;&nbsp;
+              A370&nbsp;<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A370-clu.html">clu</a>|<a href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A370-par.html">par</a>
+              </h5>
+            </header> <!-- end article header -->
+
+            <section class="post_content">
+              <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+              <!--<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>-->
+              <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+              <link href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" rel="stylesheet"/>
+              <div id="map" style="width: 780px; height: 780px"></div>
+              <!-- adds display areas to side of map, position based on map size -->
+              <div id="trackerheader" style="border-radius: 5px; background:White; position:absolute; margin-left:790px; margin-top:-780px; width:180px; height:25px;"><big><b>Cursor Position</b></big></div>
+              <div id="trackerxy" style="border-radius: 5px; background:White; position:absolute; margin-left:790px; margin-top:-760px; width:180px; height:25px;"><big>x, y:</big></div>
+              <div id="trackerRA" style="border-radius: 5px; background:White; position:absolute; margin-left:790px; margin-top:-740px; width:180px; height:25px;"><big>RA:</big></div>
+              <div id="trackerDEC" style="border-radius: 5px; background:White; position:absolute; margin-left:790px; margin-top:-720px; width:180px; height:25px;"><big>DEC:</big></div>
+
+              <div id="objectheader" style="border-radius: 5px; background:White; position:absolute; margin-left:790px; margin-top:-690px; width:180px; height:25px;"><big><b>Selected Object</b></big></div>
+              <div id="objectinfo" style="border-radius: 0px; background:White; position:absolute; margin-left:785px; margin-top:-664px; width:180px; height:400px;"></div>
+              <div id="objlink" style="border-radius: 0px; background:White; position:absolute; margin-left:790px; margin-top:-667px; width:180px; height:25px;"><big>Click on an object</big></div>
+
+              <!-- adds forms for user input to side of map, position based on map size-->
+              <form name="RADECinput" style="position:absolute; margin-left:790px; margin-top:-435px; width:177px;">
+                <fieldset>
+                <legend>Jump to Coordinates</legend>
+                RA:
+                <label>
+                  <input type="number" name="racoordinate" onkeydown="racoordinatekey(event, this.form)" min="3.52355" max="3.64334" step="0.00001" placeholder="3.5236 to 3.6433">
+                </label>
+                DEC:
+                <label>
+                  <input type="number" name="deccoordinate" onkeydown="deccoordinatekey(event, this.form)" min="-30.43998" max="-30.33665" step="0.00001" placeholder="-30.44 to -30.34">
+                </label>
+                Zoom Level:
+                <label>
+                  <input type="number" name="radeczoomlevel" onkeydown="radeczoomlevelkey(event, this.form)" min="0" max="4" step="1" placeholder="0 to 4">
+                </label>
+                <input type="button" name="button" Value="Submit" onClick="userLocationRADEC(this.form)"><br><br>
+                </fieldset>
+              </form>
+              <form name="objinput" style="position:absolute; margin-left:790px; margin-top:-192px; width:177px;">
+                <fieldset>
+                <legend>Jump to Object</legend>
+                Object ID:
+                <label>
+                  <input type="number" name="objnum" onkeydown="objnumkey(event, this.form)" min="1" max="20079" step="1" placeholder="1 to 9311 (20079)">
+                </label>
+                Zoom Level:
+                <label>
+                  <input type="number" name="objzoomlevel" onkeydown="objzoomlevelkey(event, this.form)" min="0" max="4" step="1" placeholder="0 to 4">
+                </label>
+                <input type="button" name="button" Value="Submit" onClick="getobj(this.form)"><br><br>
+                </fieldset>
+              </form>
+              <div id="imageinfo" style="position:relative; margin-top:15px;" align="left">
+                <div style="display: inline-block; margin-left:15px; width:250px;">
+                <b>RGB 1:</b> <font color="#FF0000">F814W</font>, <font color="#00FF00">F606W</font>, <font color="#0000FF">F435W</font><br>
+                <b>RGB 2:</b> <font color="#FF0000">F160W</font>, <font color="#00FF00">F125W</font>, <font color="#0000FF">F814W</font><br>
+                <b>RGB 3:</b> <font color="#FF0000">Ks</font>, <font color="#00FF00">F105W+F125W</font>, <font color="#0000FF">F814W</font><br>
+                <b>BCGs:</b> Bright Cluster Galaxies</div>
+                <div style="display: inline-block; margin-left:15px;">
+                <b>Galaxy Cluster Cosmological Redshift:</b> 0.308<br>
+                <b>Galaxy Cluster Distance:</b> approximately 3.49 billion light-years<br>
+                <b>Galaxy Cluster Field Coordinates (RA, DEC):</b> 3.58833, -30.39725<br>
+                <b>Parallel Field Coordinates (RA, DEC):</b> 3.47333, -30.38175<br>
+                </div>
+              </div>
+              <form name="objlistin" style="position:absolute; left: 15px; margin-top: 5px; width: 967px;">
+                <fieldset>
+                <legend>Quick Object Viewer</legend>
+                Enter a list of object IDs separated by commas and/or a range separated by a hyphen:
+                <input type="text" name="objlist" onkeydown="objlistkey(event, this.form)" placeholder="651, 3501, 5818, 7282, 20009-20012">
+                <input type="button" name="button" Value="Submit" onClick="genobjlinks(this.form)"><br><br>
+                </fieldset>
+              </form>
+              <div id="objlistout" style="border-radius: 5px; background:White; position:absolute; left: 15px; margin-top: 160px; width: 962px; "></div>
+
+              <script>
+                var map = L.map('map', {   // initializes map
+                  crs: L.CRS.Simple, // coordinate reference system. Simple is a square grid
+                  maxZoom: 4, // number of zoom levels, zero indexed
+                  maxBounds: [[0,0],[780,780]],  // optional: bounces user back if they try to go outsize of bounds
+                  attributionControl: false
+                });
+
+                map.addControl(new L.Control.Fullscreen()); //adds fullscreen feature
+
+                var bounds = [[0,0], [780,780]]; //pixel size of map
+                map.fitBounds(bounds); //sets given bounds within max zoom level
+                var rgb1Image = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_acs_bcgs_out_rgb.framed.jpg', bounds).addTo(map);
+                var rgb1Orig = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_acs_rgb.framed.jpg', bounds);
+                var rgb2Image = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_ijh_bcgs_out_rgb.framed.jpg', bounds);
+                var rgb2Orig = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_ijh_rgb.framed.jpg', bounds);
+                var rgb3Image = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_ijk_bcgs_out_rgb.framed.jpg', bounds);
+                var rgb3Orig = L.imageOverlay('http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/images/A2744-clu-60mas_ijk_rgb.framed.jpg', bounds);
+                var baseMaps = {
+                  'RGB1': rgb1Image,
+                  'RGB2': rgb2Image,
+                  'RGB3': rgb3Image
+                };
+                var RGB1Overlay = {
+                  'BCGs': rgb1Orig
+                };
+                var RGB2Overlay = {
+                  'BCGs': rgb2Orig
+                };
+                var RGB3Overlay = {
+                  'BCGs': rgb3Orig
+                };
+                rgb1Orig.addTo(map);
+                layerControl = L.control.layers(baseMaps, RGB1Overlay).addTo(map);
+
+                map.on('baselayerchange', function(e) {
+                  if (map.hasLayer(rgb1Image)){
+                    if (map.hasLayer(rgb2Orig) || map.hasLayer(rgb3Orig)){
+                      rgb1Orig.addTo(map);
+                    }
+                    map.removeLayer(rgb2Orig);
+                    map.removeLayer(rgb3Orig);
+                    map.removeControl(layerControl);
+                    layerControl = L.control.layers(baseMaps, RGB1Overlay).addTo(map);
+                    layerControl.expand();
+                  }
+                  if (map.hasLayer(rgb2Image)){
+                    if (map.hasLayer(rgb1Orig) || map.hasLayer(rgb3Orig)){
+                      rgb2Orig.addTo(map);
+                    }
+                    map.removeLayer(rgb1Orig);
+                    map.removeLayer(rgb3Orig);
+                    map.removeControl(layerControl);
+                    layerControl = L.control.layers(baseMaps, RGB2Overlay).addTo(map);
+                    layerControl.expand();
+                  }
+                  if (map.hasLayer(rgb3Image)){
+                    if (map.hasLayer(rgb1Orig) || map.hasLayer(rgb2Orig)){
+                      rgb3Orig.addTo(map);
+                    }
+                    map.removeLayer(rgb1Orig);
+                    map.removeLayer(rgb2Orig);
+                    map.removeControl(layerControl);
+                    layerControl = L.control.layers(baseMaps, RGB3Overlay).addTo(map);
+                    layerControl.expand();
+                  }
+                });
+
+                var circle = L.circleMarker([-1000, -1000], { // creates circle, sets size, color, fill, opacity
+                  radius: 0, // initial radius 0 so no circle is displayed before clicking
+                  color: 'rgb(0, 255, 0)',
+                  weight: 1.5,
+                  fillOpacity: 0,
+                }).addTo(map);
+
+                var scaleBarIcon0 = L.icon({
+                  iconUrl: 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/scalebaricon0.png',
+                  iconSize: [125.8,31.95]
+                });
+                var scaleBarIcon1 = L.icon({
+                  iconUrl: 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/scalebaricon1.png',
+                  iconSize: [125.8,31.95]
+                });
+                var scaleBarIcon2 = L.icon({
+                  iconUrl: 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/scalebaricon2.png',
+                  iconSize: [125.8,31.95]
+                });
+                var scaleBarIcon3 = L.icon({
+                  iconUrl: 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/scalebaricon3.png',
+                  iconSize: [166.67,31.95]
+                });
+                var scaleBarIcon4 = L.icon({
+                  iconUrl: 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/scalebaricon4.png',
+                  iconSize: [166.67,31.95]
+                });
+
+                scaleBar = L.marker([25,75], {icon: scaleBarIcon0}).addTo(map);
+
+                map.on('move', function(e) {
+                  if (map.getZoom() == 0) {
+                    scaleBar.setLatLng([map.getBounds().getSouthWest().lat+25, map.getBounds().getSouthWest().lng+75]);
+                  }
+                  if (map.getZoom() == 1) {
+                    scaleBar.setLatLng([map.getBounds().getSouthWest().lat+12.5, map.getBounds().getSouthWest().lng+37.5]);
+                  }
+                  if (map.getZoom() == 2) {
+                    scaleBar.setLatLng([map.getBounds().getSouthWest().lat+6.25, map.getBounds().getSouthWest().lng+18.75]);
+                  }
+                  if (map.getZoom() == 3) {
+                    scaleBar.setLatLng([map.getBounds().getSouthWest().lat+3.125, map.getBounds().getSouthWest().lng+12]);
+                  }
+                  if (map.getZoom() == 4) {
+                    scaleBar.setLatLng([map.getBounds().getSouthWest().lat+1.5625, map.getBounds().getSouthWest().lng+6]);
+                  }
+                });
+
+                map.on('zoomstart', function(e) {
+                    map.removeLayer(scaleBar);
+                });
+
+                map.on('zoomend', function(e) {
+                  circle.setRadius(5*(map.getZoom()+1));
+                  if (map.getZoom() == 0) {
+                    scaleBar = L.marker([map.getBounds().getSouthWest().lat+25, map.getBounds().getSouthWest().lng+75], {icon: scaleBarIcon0}).addTo(map);
+                  }
+                  if (map.getZoom() == 1) {
+                    scaleBar = L.marker([map.getBounds().getSouthWest().lat+12.5, map.getBounds().getSouthWest().lng+37.5], {icon: scaleBarIcon1}).addTo(map);
+                  }
+                  if (map.getZoom() == 2) {
+                    scaleBar = L.marker([map.getBounds().getSouthWest().lat+6.25, map.getBounds().getSouthWest().lng+18.75], {icon: scaleBarIcon2}).addTo(map);
+                  }
+                  if (map.getZoom() == 3) {
+                    scaleBar = L.marker([map.getBounds().getSouthWest().lat+3.125, map.getBounds().getSouthWest().lng+12], {icon: scaleBarIcon3}).addTo(map);
+                  }
+                  if (map.getZoom() == 4) {
+                    scaleBar = L.marker([map.getBounds().getSouthWest().lat+1.5625, map.getBounds().getSouthWest().lng+6], {icon: scaleBarIcon4}).addTo(map);
+                  }
+                });
+
+
+
+                // NOTE: Coordinates are in [y,x] and [lat, lng]
+                // Following conversions are between x,y (pixel) size of image, lng,lat bounds of map, and ra,dec coords.
+                // RGBs are all centered within a 6200px by 6200px frame
+                // Make sure to convert back to original x and y coordinates
+                function lngx(lng) { // converts lng to original x
+                  x = lng*(6200./780)-434;
+                  return x;
+                }
+
+                function xlng(x){ // converts original x to lng
+                  lng = (x+434)/(6200./780);
+                  return lng;
+                }
+
+                function laty(lat) { // converts lat to original y
+                  y = lat*(6200./780)-44;
+                  return y;
+                }
+
+                function ylat(y) { // converts original y to lat
+                  lat = (y+44)/(6200./780);
+                  return lat;
+                }
+
+                function xra(x) { // converts original x to ra
+                  ra = -0.0000193210586993*x+3.6349517314740347;
+                  return ra;
+                }
+
+                function rax(ra){ // converts ra to original x
+                  x = (ra-3.6349517314740347)/-0.0000193210586993;
+                  return x;
+                }
+
+                function ydec(y) { // converts original y to dec
+                  dec = 0.0000166666446926*y-30.4392444694194779;
+                  return dec;
+                }
+
+                function decy(dec) { // converts dec to original y
+                  y = (dec+30.4392444694194779)/0.0000166666446926;
+                  return y;
+                }
+
+                function getid(x,y){  // uses x and y position to find object at location
+                  if ((x >= 0 && x <= 5349) && (y >= 0 && y <= 6149)) {
+                    var http_request = new XMLHttpRequest();
+                    var json_object
+                    var url
+                    var sub
+                    url = 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/JSON/seg/'+x+'.js' //location of json file
+                    http_request.open("GET", url, true);
+                    http_request.onreadystatechange = function() {
+                    var done=4, ok=200;
+                    if (http_request.readyState === done && http_request.status === ok) {
+                      json_object = JSON.parse(http_request.responseText);
+                      id = json_object[y] // finds id number for object at location
+                      index = Math.floor(id/100)*100; // gets index
+                      if ((id>0 && id<=9311) || (id>20000 && id<=20079)){
+                        txt = '<big><a style="color: #2BA6CB" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+id+'.html" target="_blank">Object: '+id+'</a></big>'; // changes text above iframe
+                        frametxt = '<iframe src="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+id+'mini.html" frameborder="0" height="300" scrolling="no"></iframe>'; // changes iframe page
+                        url = 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/JSON/XY/xy.js' // url of jsonxy
+                        if (id>0 && id<=9311){
+                          xind = id-1; // finds x-loc of object in jsonxy
+                          yind = 9390+id-1;  // number of objects in cat+id to get y-loc in jsonxy
+                        }
+                        else{
+                          xind = id-1-20000+9311; // finds x-loc of object in jsonxy + number of non-BCG objects - 20000 index
+                          yind = 9390+id-1-20000+9311;
+                        }
+                        http_request.open("GET", url, true);
+                        http_request.onreadystatechange = function() {
+                          var done=4, ok=200;
+                          if (http_request.readyState === done && http_request.status === ok) {
+                            json_obj = JSON.parse(http_request.responseText);
+                            x = json_obj[xind] // sets x-loc
+                            y = json_obj[yind] // set y-loc
+                            lng = xlng(x); // converts x to lng (center of object)
+                            lat = ylat(y); // converts y to lat
+                            xcord = Math.round(x); // rounds x to get coord to display
+                            ycord = Math.round(y); // rounds y to get coord to display
+                            RA = xra(x); // converts x to RA
+                            DEC = ydec(y); // converts y to dec
+                            objxy = '<big> x, y: '+xcord+', '+ycord+'</big>'; // displays obj x and y on main page
+                            objRA = '<big> RA: '+RA.toFixed(5)+'</big>'; // displays obj ra on main page to 5 decimal points
+                            objDEC = '<big> DEC: '+DEC.toFixed(5)+'</big>'; // displays obj dec on main page to 5 decimal points
+                            document.getElementById("objlink").innerHTML=txt; // changes object link on main page
+                            document.getElementById("objectinfo").innerHTML=frametxt; // changes iframe display on main page
+                            zoomlevel = map.getZoom()
+                            circle.setLatLng([lat,lng]); // moves circle to center of obj
+                            circle.setRadius(5*(zoomlevel+1)); // changes radius of circle so it appears
+                            }
+                          }
+                          http_request.send(null);
+                        }
+                        else {
+                          txt = '<big>No object at this location</big>'; // shows this if there is no object
+                          frametxt = ""; // changes iframe to no frame
+                        }
+                      document.getElementById("objlink").innerHTML=txt; // replaces object link with x
+                      document.getElementById("objectinfo").innerHTML=frametxt; // changes iframe to blank
+                      }
+                    }
+                    http_request.send(null);
+                  }
+                  else {
+                    txt = '<big>No object at this location</big>'; // shows this if there is no object
+                    frametxt = ""; // changes iframe to no frame
+                    document.getElementById("objlink").innerHTML=txt; // replaces object link with x
+                    document.getElementById("objectinfo").innerHTML=frametxt; // changes iframe to blank
+                  }
+                }
+
+                //allows user to use Enter key
+                function objnumkey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    getobj(form);
+                  }
+                }
+
+                //allows user to use Enter key
+                function objzoomlevelkey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    getobj(form);
+                  }
+                }
+
+                function getobj(form){ // moves map to object based on inputted object number
+                  var http_request = new XMLHttpRequest();
+                  var json_object
+                  zoomlevel = form.objzoomlevel.value;
+                  objnum = form.objnum.value;
+                  id = Number(objnum); // changes from string to number
+                  if ((id>0 && id<=9311) || (id>20000 && id<=20079)){
+                    if (id>0 && id<=9311){
+                      xind = id-1; // finds x-loc of object in jsonxy
+                      yind = 9390+id-1;  // number of objects in cat+id to get y-loc in jsonxy
+                    }
+                    else{
+                      xind = id-1-20000+9311; // finds x-loc of object in jsonxy
+                      yind = 9390+id-1-20000+9311;  // number of objects in cat+id to get y-loc in jsonxy
+                    }
+                    index = Math.floor(id/100)*100;
+                    txt = '<big><a style="color: #2BA6CB" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+id+'.html" target="_blank">Object: '+id+'</a></big>'; // changes txt on main page
+                    frametxt = '<iframe src="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+id+'mini.html" frameborder="0" height="300" scrolling="no"></iframe>'; // changes iframe source page
+                    document.getElementById("objlink").innerHTML=txt;
+                    document.getElementById("objectinfo").innerHTML=frametxt;
+                    if (zoomlevel >= 0 && zoomlevel <= 4) {
+                    url = 'http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/JSON/XY/xy.js' // url of jsonxy
+                    http_request.open("GET", url, true);
+                    http_request.onreadystatechange = function() {
+                      var done = 4, ok = 200;
+                      if (http_request.readyState === done && http_request.status === ok) {
+                        json_object = JSON.parse(http_request.responseText);
+                        x = json_object[xind] //gets x from jsonxy
+                        y = json_object[yind] //gets y from jsonxy
+                        lng = xlng(x); //converts x to lng
+                        lat = ylat(y); //converts y to lat
+                        xcord = Math.round(x); //rounds for display
+                        ycord = Math.round(y);
+                        RA = xra(x); //converts x to ra
+                        DEC = ydec(y); //converts y to dec
+                        objxy = '<big> x, y: '+xcord+', '+ycord+'</big>'; //changes display
+                        objRA = '<big> RA: '+RA.toFixed(5)+'</big>'; // displays obj ra on main page to 5 decimal points
+                        objDEC = '<big> DEC: '+DEC.toFixed(5)+'</big>'; // displays obj dec on main page to 5 decimal points
+                        map.setView([lat,lng], Number(zoomlevel)); //moves map to center on specified object at specified zoom level
+                        circle.setLatLng([lat,lng]); //moves circle to object center of object
+                        circle.setRadius(5*(Number(zoomlevel)+1)); //sets radius of circle so it displays
+                        map.removeLayer(scaleBar);
+                        if (map.getZoom() == 0) {
+                          scaleBar = L.marker([map.getBounds().getSouthWest().lat+25, map.getBounds().getSouthWest().lng+75], {icon: scaleBarIcon0}).addTo(map);
+                        }
+                        if (map.getZoom() == 1) {
+                          scaleBar = L.marker([map.getBounds().getSouthWest().lat+12.5, map.getBounds().getSouthWest().lng+37.5], {icon: scaleBarIcon1}).addTo(map);
+                        }
+                        if (map.getZoom() == 2) {
+                          scaleBar = L.marker([map.getBounds().getSouthWest().lat+6.25, map.getBounds().getSouthWest().lng+18.75], {icon: scaleBarIcon2}).addTo(map);
+                        }
+                        if (map.getZoom() == 3) {
+                          scaleBar = L.marker([map.getBounds().getSouthWest().lat+3.125, map.getBounds().getSouthWest().lng+12], {icon: scaleBarIcon3}).addTo(map);
+                        }
+                        if (map.getZoom() == 4) {
+                          scaleBar = L.marker([map.getBounds().getSouthWest().lat+1.5625, map.getBounds().getSouthWest().lng+6], {icon: scaleBarIcon4}).addTo(map);
+                        }
+                      }
+                    }
+                    http_request.send(null);
+                    }
+                    else {
+                      alert("Please choose a zoom level between 0 and 4.");
+                    }
+                  }
+                  else {
+                    alert("Object does not exist, please enter an ID between 1 and 9311 or 20001 and 20079."); //displays alert if object not in catalog
+                  }
+                }
+
+                //allows user to use Enter key
+                function objlistkey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    genobjlinks(form);
+                  }
+                }
+
+                function genobjlinks(form) { //creates form to generate list of object links
+                  objs = form.objlist.value;
+                  list = objs.split(","); //defines what to split entries by
+                  frametxt = "";
+                  for (i = 0; i < list.length; i++) { //generates object list
+                    obj = list[i];
+                    if (obj.indexOf('-')>0){  //generates object list for a range of objects (if there is a - in the entry)
+                      set = obj.split("-"); //splits into min and max
+                      first = Number(set[0]); //min
+                      last = Number(set[1]); //max
+                      for (j=first; j<=last; j++) { //generates list of all objects from min to max
+                        if((j>0 && j<=9311) || (j>20000 && j<=20079)){ //checks to make sure obj num is in catalog (between 0 and number of objects in catalog +1, non inclusive)
+                          index = Math.floor(j/100)*100;
+                          frametxt = frametxt+'<a class="brand" id="logo" target="_blank" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+j+'.html"><img src="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_figs/'+index+'/'+j+'.png"></a></br></br>'
+                        }
+                      }
+                    }
+                    else { //if not a range just generate link for list entry
+                      objnum = Number(list[i]);
+                      if ((objnum>0 && objnum<=9311) || (objnum>20000 && objnum<=20079)){//checks to make sure obj num is in catalog (between 0 and number of objects in catalog +1, non inclusive)
+                        index = Math.floor(objnum/100)*100;
+                        frametxt = frametxt+'<a class="brand" id="logo" target="_blank" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_pages/'+index+'/'+objnum+'.html"><img src="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/A2744-clu/object_figs/'+index+'/'+objnum+'.png"></a></br></br>' //generates link
+                      }
+                    }
+                    document.getElementById("objlistout").innerHTML=frametxt; //displays all links
+                  }
+                }
+
+                function onMapClick(e) { //tells map what to do when clicked on
+                  x = lngx(e.latlng.lng); //changes x and y to location of click
+                  y = laty(e.latlng.lat);
+                  ra = xra(x); //converts x and y to ra and dec
+                  dec = ydec(y);
+                  x = Math.round(x); //rounds for display
+                  y = Math.round(y);
+                  dec = dec.toFixed(5);
+                  ra = ra.toFixed(5);
+                  zoomlevel = map.getZoom();
+                  circle.setLatLng(e.latlng); //moves circle to clicked location
+                  circle.setRadius(5*(zoomlevel+1)); //makes circle visible
+                  getid(x,y); //if object in location, moves circle to center of object
+                }
+
+                function onMouseMove(e) { //tells map what to do when mouse is moved
+                  x = lngx(e.latlng.lng); //changes x and y to location of curson while on map
+                  y = laty(e.latlng.lat);
+                  ra = xra(x); //converts x and y to ra and dec
+                  dec = ydec(y);
+                  y = Math.round(y); //rounds x and y
+                  x = Math.round(x);
+                  trackxy = '<big> x, y: '+x+', '+y+'</big>'; //changes display text for curson position
+                  trackRA = '<big> RA: '+ra.toFixed(5)+'</big>';
+                  trackDEC = '<big> DEC: '+dec.toFixed(5)+'</big>';
+                  document.getElementById("trackerxy").innerHTML=trackxy;
+                  document.getElementById("trackerRA").innerHTML=trackRA;
+                  document.getElementById("trackerDEC").innerHTML=trackDEC;
+                }
+
+                //allows user to use Enter key
+                function racoordinatekey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    userLocationRADEC(form);
+                  }
+                }
+
+                //allows user to use Enter key
+                function deccoordinatekey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    userLocationRADEC(form);
+                  }
+                }
+
+                //allows user to use Enter key
+                function radeczoomlevelkey(event, form) {
+                  var x = event.keyCode;
+                  if (x == 13) {
+                    event.preventDefault();
+                    userLocationRADEC(form);
+                  }
+                }
+
+                function userLocationRADEC(form){ //moves map to user-specified location
+                  RA = Number(form.racoordinate.value); //gets ra, dec, and zoom level from form
+                  DEC = Number(form.deccoordinate.value);
+                  zoomlevel = form.radeczoomlevel.value;
+                  if (RA>=3.52355 && RA<=3.64334) { //check to make sure within bounds of map
+                  if (DEC>=-30.43998 && DEC<=-30.33665) {
+                  if (zoomlevel >= 0 && zoomlevel <= 4) {
+                    xcoordinate = rax(RA); //converts ra to x
+                    ycoordinate = decy(DEC); //converts dec to y
+                    x = Math.round(xcoordinate); //rounds
+                    y = Math.round(ycoordinate);
+                    lng = xlng(xcoordinate); //converts x to lng
+                    lat = ylat(ycoordinate); //converts y to lat
+                    map.setView([lat,lng], Number(zoomlevel)); //moves map to center on location with zoom level
+                    circle.setLatLng([lat,lng]); //moves circle to location
+                    circle.setRadius(5*(map.getZoom()+1)); //displays circle
+                    map.removeLayer(scaleBar);
+                    if (map.getZoom() == 0) {
+                      scaleBar = L.marker([map.getBounds().getSouthWest().lat+25, map.getBounds().getSouthWest().lng+75], {icon: scaleBarIcon0}).addTo(map);
+                    }
+                    if (map.getZoom() == 1) {
+                      scaleBar = L.marker([map.getBounds().getSouthWest().lat+12.5, map.getBounds().getSouthWest().lng+37.5], {icon: scaleBarIcon1}).addTo(map);
+                    }
+                    if (map.getZoom() == 2) {
+                      scaleBar = L.marker([map.getBounds().getSouthWest().lat+6.25, map.getBounds().getSouthWest().lng+18.75], {icon: scaleBarIcon2}).addTo(map);
+                    }
+                    if (map.getZoom() == 3) {
+                      scaleBar = L.marker([map.getBounds().getSouthWest().lat+3.125, map.getBounds().getSouthWest().lng+12], {icon: scaleBarIcon3}).addTo(map);
+                    }
+                    if (map.getZoom() == 4) {
+                      scaleBar = L.marker([map.getBounds().getSouthWest().lat+1.5625, map.getBounds().getSouthWest().lng+6], {icon: scaleBarIcon4}).addTo(map);
+                    }
+                    getid(x, y); //if object in location, move circle to center of object
+                    objxy = '<big> x, y: '+x+', '+y+'</big>'; //changes display to user specified location
+                    objRA = '<big> RA: '+RA.toFixed(5)+'</big>'; // displays obj ra on main page to 5 decimal points
+                    objDEC = '<big> DEC: '+DEC.toFixed(5)+'</big>'; // displays obj dec on main page to 5 decimal points
+                    document.getElementById("trackerxy").innerHTML=objxy;
+                    document.getElementById("trackerRA").innerHTML=objRA;
+                    document.getElementById("trackerDEC").innerHTML=objDEC;
+                  }
+                  else {
+                    alert("Please choose a zoom level between 0 and 4.");
+                  }
+                  }
+                  else {
+                    alert("DEC out of bounds, please choose a value between -30.43998 and -30.33665."); // alerts if out of bounds location chosen
+                  }
+                  }
+                  else {
+                    alert("RA out of bounds, please choose a value between 3.52355 and 3.64334."); // alerts if out of bounds location chosen
+                  }
+                }
+
+                map.on('click', onMapClick); //adds mouseclick method to map
+                map.on('mousemove', onMouseMove); //adds mousemove method to map
+
+              </script>
+            </section> <!-- end article section -->
+          </article> <!-- end article -->
+        </div> <!-- end #main -->
+      </div> <!-- end #content -->
+    </div> <!-- end #container -->
+  </body>
+</html>

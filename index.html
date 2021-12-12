@@ -1,0 +1,646 @@
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" name="viewport" content="IE=edge, chrome=1, width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-u, viewport-fit=cover">
+    <title id="title"></title>
+    <link id = "dynamic-favicon" rel="shortcut icon" type="image/png" href="">
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~daniellangevagle/stylesheets/leaflet.css?version=1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&#038;subset=latin%2Clatin-ext&#038;ver=4.4.2" type="text/css" media="all"/>
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/wp-content/themes/hffds/stylesheets/app.css?version=1" type="text/css" media="all"/>
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~daniellangevagle/stylesheets/grizliweb.css?version=0.53" type="text/css" media="all"/>
+    <link rel="stylesheet" href="http://cosmos.phy.tufts.edu/~daniellangevagle/stylesheets/multirange.css?version=1" type="text/css" media="all"/>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js?ver=4.4.2"></script>
+  </head>
+
+  <body scroll="no" style="overflow: hidden;">
+    <div class="disableTextHighlight" style="height: 100%; width: 100%;">
+      <div id="map" style="cursor: crosshair; background: black; border: none; filter: brightness(1); -webkit-filter: brightness(1);" onkeydown="mapkey(event)" onkeyup="mapkey(event)"></div>
+      <!-- Menu Container -->
+      <button id="menuButton" class="menuButton update" type="button" title="Open menu" onclick="showHideMenu()"></button>
+      <div id="menuContainer" class="menuContainer">
+        <div id="settingsButton" class="menuOption" onclick="showSubMenu('settings')">
+          <div id="settingsIcon" class="menuOptionIcon" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/settingswhite.png?version=1);"></div>
+          <div id="settingsText" class="menuOptionText">Settings</div>
+          <div id="settingsIconBlue" class="menuOptionIconBlue" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/settingsblue.png?version=1);"></div>
+        </div>
+        <div id="advancedSearchButton" class="menuOption" onclick="showSubMenu('advancedSearch')">
+          <div id="advancedSearchIcon" class="menuOptionIcon" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/advancedSearchwhite.png?version=1);"></div>
+          <div id="advancedSearchText" class="menuOptionText">Advanced Search</div>
+          <div id="advancedSearchIconBlue" class="menuOptionIconBlue" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/advancedSearchblue.png?version=1);"></div>
+        </div>
+        <div id="keyboardButton" class="menuOption" onclick="showSubMenu('keyboard')">
+          <div id="keyboardIcon" class="menuOptionIcon" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/keyboardwhite.png?version=1);"></div>
+          <div id="keyboardText" class="menuOptionText">Keyboard Shortcuts</div>
+          <div id="keyboardIconBlue" class="menuOptionIconBlue" style="background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/keyboardblue.png?version=1);"></div>
+        </div>
+        <div id="UserGuideButton" class="menuOption" onclick="showSubMenu('UserGuide')">
+          <div id="UserGuideIcon" class="menuOptionIcon" style="background-size: 24px 24px; background-image: url(http://cosmos.phy.tufts.edu/~daniellangevagle/icons/UserGuide.png?version=1);"></div>
+          <div id="UserGuideText" class="menuOptionText">User Guide</div>
+        </div>
+      </div>
+      <div id="subMenuHeaders" class="subMenuHeaders">
+        <div id="settingsHeader" class="subMenuHeader">
+          <div id="settingsHeaderMap" class="settingsOption" style="color: white; background-color: #4187f5" onclick="showSubSettings(this.innerHTML.toLowerCase())">Map</div>
+          <div id="settingsHeaderMarkers" class="settingsOption" onclick="showSubSettings(this.innerHTML.toLowerCase())">Markers</div>
+          <div id="settingsHeaderData" class="settingsOption" onclick="showSubSettings(this.innerHTML.toLowerCase())">Data</div>
+        </div>
+        <div id="advancedSearchHeader" class="subMenuHeader">
+          <div id="advancedSearchButtons" class="advancedSearchButtons"></div>
+          <div class="subMenuButton" onclick="newAdvancedSearch()" style="position: absolute; top: 0px; left: 0px; width: 100px; margin: 5px 7px 5px 7px; font-size: 14px;">+ New Search</div>
+          <div class="verticalLine" style="position: absolute; left: 114px; top: 0px; height: 100%; width: 2px;"></div>
+        </div>
+        <div id="keyboardHeader" class="subMenuHeader" style="height: 0px; border: none;"></div>
+      </div>
+      <div id="subMenus" class="subMenus">
+        <div id="settings" class="subMenu">
+          <div id="mapSettings" class="settingsContainer" style="display: block;">
+            <div class="slidecontainer">
+              <div class="menuText menuLeftEdge menuVertClose" style="display: block;">Brightness</div>
+              <div class="brightnessIcon"></div>
+              <input id="myRange" type="range" min="1" max="99" value="33" class="slider">
+            </div>
+            <div class="menuText menuLeftEdge menuVertClose" style="display: block;">Show/Hide</div>
+            <div class="menuCheckboxes menuLeftEdge menuVertClose" onclick="mapSettingsCheckbox('cursorTrackerContainer')">
+              <label for="cursorTrackerContainerCheckbox">
+                <input id="cursorTrackerContainerCheckbox" type="checkbox" checked><span>Cursor Position</span>
+              </label>
+            </div>
+            <br>
+            <div class="menuCheckboxes menuLeftEdge menuVertClose" onclick="mapSettingsCheckbox('searchContainer')"><label for="searchContainerCheckbox">
+              <input id="searchContainerCheckbox" type="checkbox" checked><span>Search Container</span></label>
+            </div>
+            <br>
+            <div class="menuCheckboxes menuLeftEdge" onclick="mapSettingsCheckbox('objectData')">
+              <label for="objectDataCheckbox">
+                <input id="objectDataCheckbox" type="checkbox" checked><span>Object Data</span>
+              </label>
+            </div>
+            <div class="menuText menuLeftEdge" style="display: block;">Focus Circle Color</div>
+            <div style="font-size: 0px; vertical-align: bottom;">
+              <div id="focusCircleColorBox" class="circleContainer" style="border-color: #00ff00;" onclick="focusCircleColorFocus()"></div>
+              <input id="focusCircleColor" type="text" autocorrect="off" autocapitalize="none" class="menuInput focusCircleColor" value="#00ff00" onkeydown="focusCircleColorInput(event, this.value)" onfocus="this.setSelectionRange(0, this.value.length)">
+              <div title="Enter color" class="subMenuButton" style="width: 65px; margin: 5px 0 5px 0;" onclick="focusCircleColorChange(document.getElementById('focusCircleColor').value)">ENTER</div>
+              <div title="Reset color" class="subMenuButton menuVertClose" style="width: 65px; margin: 5px 0 5px 0;" onclick="focusCircleColorChange('#00ff00')">RESET</div>
+            </div>
+            <div style="font-size: 0px; width: 100%; text-align: center;">
+              <div id="focusCircleColorAlert" class="menuAlert"></div>
+            </div>
+          </div>
+          <div id="markersSettings" class="settingsContainer" style="display: none;">
+            <div class="menuText menuLeftEdge menuVertClose" style="display: inline-block; width: 110px;">Displayed Filter</div>
+            <div class="autocomplete" style="height: 30px; width: calc(100% - 140px); vertical-align: top;">
+              <input id="markerDispFilter" class="menuInput" type="text" autocorrect="off" autocapitalize="none" value="" style="width: 100%; " onfocus="markerDispFocus()" onkeydown="markerDispFilterKeyDown(event)" onblur="updateMarkerDispFilter()">
+            </div>
+            <div class="menuText menuLeftEdge menuVertClose" style="display: inline-block; width: 110px;">Min Zoom Level</div>
+            <input id="markerMinZoomLevel" class="menuInput" value="" type="number" style="display: inline-block; width: calc(100% - 140px);" onfocus="markerZoomLevelFocus()" onkeydown="markerZoomLevelKeyDown(event)" onblur="updateMarkerZoomLevel()">
+            <div class="menuText menuLeftEdge menuVertClose" style="display: inline-block; width: 110px;">Marker Size</div>
+            <div id="xsmall" class="subMenuButton" style="width: calc(33% - 46px); margin-right: 0; background-color: #4187f5; color: white;" onclick="updateMarkerSize('small', true)">S</div>
+            <div id="xmedium" class="subMenuButton" style="width: calc(33% - 46px); margin-left: 0; margin-right: 0;" onclick="updateMarkerSize('medium', true)">M</div>
+            <div id="xlarge" class="subMenuButton" style="width: calc(33% - 45px); margin-left: 0;" onclick="updateMarkerSize('large', true)">L</div>
+            <div class="menuText menuLeftEdge menuVertClose">Marker Colors & Bounds</div>
+            <div id="mFilters" style="margin-bottom: 10px;"></div>
+            <div id="markerDispFilterAutocompleteContainer" style="position: absolute; top: 25px; left: 130px; height: 0px; width: calc(100% - 140px);"></div>
+          </div>
+          <div id="dataSettings" class="settingsContainer" style="display: none;">
+            <div class="menuText menuLeftEdge menuVertClose" style="display: inline-block;">Table</div>
+            <div id="tableCheckboxButton" class="subMenuButton" style="width: 140px; margin: 5px 0 0 10px; display: block; font-size: 14px;" onclick="uncheckAllTable()">Check/Uncheck All</div>
+            <div style="font-size: 0px; margin-bottom: 10px;">
+              <div id="tableSettingsColOne" style="width: 50%; display: inline-block; vertical-align: top;"></div>
+              <div id="tableSettingsColTwo" style="width: 50%; display: inline-block; vertical-align: top;"></div>
+            </div>
+            <div class="menuText menuLeftEdge menuVertClose" style="display: inline-block;">Figures</div>
+            <div id="figureCheckboxButton" class="subMenuButton" style="width: 140px; margin: 5px 0 0 10px; display: block; font-size: 14px;" onclick="uncheckAllFigures()">Check/Uncheck All</div>
+            <div style="font-size: 0px; margin-bottom: 10px;">
+              <div id="figureSettingsColOne" style="width: 50%; display: inline-block; vertical-align: top;"></div>
+              <div id="figureSettingsColTwo" style="width: 50%; display: inline-block; vertical-align: top;"></div>
+            </div>
+          </div>
+
+        </div>
+        <div id="advancedSearch" class="subMenu">
+          <div id="tempASMessage" style="margin: 8px; height: 30px; width: calc(100% - 16px); text-align: center">Click + New Search to<br>create an Advanced Search</div>
+        </div>
+        <div id="keyboard" class="subMenu"><div class="keyboardShortcuts"></div></div>
+      </div>
+      <div id="menuBackground" class="menuBackground" onclick="hideMenu('background')"></div>
+
+      <!-- Contains menu, field entry, ID entry, cursor location, filter buttons, marker buttons, scale bar, centering buttons and zoom controls -->
+      <div id="fieldinputAutocompleteContainer" style="position: absolute; top: 42px; left: 10px; width: 300px;"></div>
+      <div id="topLeftContainer" class="topLeftContainer">
+        <form id="fieldInputForm" class="fieldInputForm" autocomplete="off">
+          <div class="topVertical" style="left: 32px;"></div>
+          <div class="autocomplete">
+            <input id="fieldinput" class="field" type="text" autocorrect="off" onclick="hideMenu('fieldinput')" onfocus="fieldFocus()" onkeydown="fieldkeydown(event)">
+          </div>
+        </form>
+        <!-- Cursor tracker contrainer -->
+        <div id="cursorTrackerContainer" class="cursorTrackerContainer">
+          <div id="cursorRADEC" class="cursorContainer">
+            <span class="cursorColOne">RA</span><span class="cursorColTwo">-</span><span class="cursorColThree">DEC</span><span class="cursorColFour">-</span>
+          </div>
+          <div id="cursorXY" class="cursorContainer" style="margin-top: -1px;">
+            <span class="cursorColOne">X</span><span class="cursorColTwo">-</span><span class="cursorColThree">Y</span><span class="cursorColFour">-</span>
+          </div>
+        </div>
+        <!-- Object ID search form -->
+        <div id="searchContainer" class="searchContainer">
+          <form id="searchIDForm" class="searchIDForm" name="objidsearch" action="" method="post">
+            <div class="searchColOne" onclick="document.getElementById('searchID').focus()">ID</div>
+            <input id="searchID" class="searchInput" name="objid" type="number" autocomplete="off" onkeydown="objidkey(event, this.form)" min="1" step="1" onfocus="searchFocus()" onblur="searchBlur()">
+          </form>
+          <form id="searchRADECForm" class="searchRADECForm" name="radecsearch" action="" method="post">
+            <div class="searchColOne" onclick="document.getElementById('searchRADEC').focus()">RA, DEC</div>
+            <input id="searchRADEC" class="searchInput" name="radec" type="text" autocorrect="off" autocapitalize="none" autocomplete="off" onkeydown="radeckey(event, this.form)" onfocus="closeAdvSrch()">
+          </form>
+          <div class="searchHorizontal" style="top: 24px;"></div>
+        </div>
+        <!-- Scale bar for mobile device in portrait viewing mode -->
+        <div id="filterButtonsContainer" class="buttonsContainer" onkeydown="mapkey(event)" onkeyup="mapkey(event)"></div>
+      </div>
+      <div id="topButtonsContainer" class="topButtonsContainer">
+        <div style="font-size: 0px;">
+          <div style="display: inline-block;">
+            <div id="zoomControlContainer" class="zoomControlContainer" onkeydown="mapkey(event)" onkeyup="mapkey(event)">
+              <button id="zoomInButton" class="zoomButton" type="button" title="Zoom in" onclick="zoomInMap()" onmousedown="zoomInGray()" onmouseup="zoomInWhite()">+</button>
+              <button id="zoomOutButton" class="zoomButton" type="button" title="Zoom out" style="color: gray; background: #c8c8c8; cursor: default;" onclick="zoomOutMap()" onmousedown="zoomOutGray()" onmouseup="zoomOutWhite()">&minus;</button>
+            </div>
+            <div id="zoomLevelContainer" class="zoomLevelContainer">
+              <form style="margin: 2px 0 0 0; padding: 0;"><input id="zoomLevel" class="zoomLevel" name="zoomnum" type="number" placeholder="0.00" onkeydown="zoomkey(event, this.form)"></form>
+            </div>
+          </div>
+          <div style="font-size: 0px; display: inline-block; vertical-align: top;">
+            <button id="zoomOutCenterButton" class="zoomOutCenterButton" type="button" title="Zoom out and center image" onclick="zoomOutCenterImageClick()"></button>
+            <button id="focusCenterButton" class="focusCenterButton" type="button" title="Center on focus" onclick="focusCenterImageClick()"></button>
+            <button id="xButton" class="xButton" type="button" title="Add object markers" onclick="addRemoveMarkers()"></button>
+            <button id="advSrchButton" class="advSrchButton" style="padding: 0;" type="button" title="Advanced Search" onclick="advSrchButtonPress()">
+              <div id="advSrchButtonCircle" style="margin: 0; padding: 0; width: 30px; height: 30px; border: 2px solid transparent; border-radius: 15px;"></div>
+            </button>
+            <button id="advSrchButtonLeft" class="advSrchButtonLeft" type="button" title="Previous search result" onclick="advSrchButtonNextPrev(-1)"></button>
+            <button id="advSrchButtonRight" class="advSrchButtonRight" type="button" title="Next search result" onclick="advSrchButtonNextPrev(1)"></button>
+            <div id="mobilePortraitScaleBarContainer" class="mobilePortraitScaleBarContainer">
+              <div class="scaleBarVertical"></div>
+              <div id="mobilePortraitScaleBarOne" class="scaleBarHorizontal"></div>
+              <div class="scaleBarVertical" style="height: 10px; width: 1px;"></div>
+              <div id="mobilePortraitScaleBarTwo" class="scaleBarHorizontal"></div>
+              <div id="mobilePortraitScaleBarExtraTick1" class="scaleBarVertical" style="height: 10px; width: 1px; display: none;"></div>
+              <div id="mobilePortraitScaleBarThree" class="scaleBarHorizontal" style="display: none;"></div>
+              <div id="mobilePortraitScaleBarExtraTick2" class="scaleBarVertical" style="height: 10px; width: 1px; display: none;"></div>
+              <div id="mobilePortraitScaleBarFour" class="scaleBarHorizontal" style="display: none;"></div>
+              <div class="scaleBarVertical"></div>
+              <div id="mobilePortraitScaleBarValue" class="scaleBarValue"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Object information container with linked ID and data table -->
+      <div id="objectInfo" class="objectInfo">
+        <div class="objectHeader enableTextHighlight"><big>Selected Object</big></div>
+        <div id="objectLink" class="objectLink enableTextHighlight">Click on an object</div>
+        <button id="tableButton" class="tableButton" title="Show table" onclick="showHideTable()"></button>
+        <button id="figuresButton" class="figuresButton" title="Show figures" onclick="showHideFigures()"></button>
+      </div>
+      <div id="objectTableContainer" class="objectTableContainer enableTextHighlight">
+        <div id="objectTableDiv" class="objectTable">
+          <div id="objectTable" style="position:relative; width: 100%; display: none; z-index: 1000;"></div>
+        </div>
+      </div>
+
+      <!-- Figures container -->
+      <div id="mobilePortraitFiguresContainerBackground" class="mobilePortraitFiguresContainerBackground"></div>
+      <div id="figuresContainer" class="figuresContainer"></div>
+      <div id="figureZoomInBackground" class="figureZoomInBackground" onclick="figureZoomIn(-1)"></div>
+      <div id="zoomFigsContainer" class="zoomFigsContainer" onclick="figureZoomIn(-1)" onkeydown="figurezoomkeydown(event)"></div>
+
+      <div id="loadingBackground" style="position: absolute; top: 0; left: 0; height: 100%; width: 100%; background: black; z-index: 9999;"><div class="loadingContainer"><div class="loader"></div></div></div>
+
+      <div id="tempAlert" class="tempAlert"></div>
+
+      <!--<div id="testMessage" style="position: absolute; top: 10px; right: 10px; z-index: 9999; background: black; color: red;"></div>-->
+
+      <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+      <script src="http://cosmos.phy.tufts.edu/~daniellangevagle/js/w3color.js"></script>
+      <script src="http://cosmos.phy.tufts.edu/~daniellangevagle/js/multirange.js"></script>
+      <script src="http://cosmos.phy.tufts.edu/~daniellangevagle/js/astro-id.js?version=0.55"></script>
+      <script>
+
+        var fields = [ "A2744-clu", "A2744-par", "M0416-clu", "M0416-par",
+                       "M0717-clu", "M0717-par", "M1149-clu", "M1149-par",
+                       "A1063-clu", "A1063-par", "A370-clu", "A370-par"];
+
+        var fieldName, infoJSON, groupJSON, xyJSON, indJSON;
+        var group, mainDir, figures, initialxySize, finalxySize, pixscl,
+            filters, defaultFilter, catNames, figNames, good_catNames,
+            good_figNames, tableNames, maxID, maxBCG, minRA, maxRA, minDEC,
+            maxDEC;
+        var cTCCheckbox, sCCheckbox, defaultMarkerZoomLevel;
+        var numFilterRows = 1;
+        var tableButton = document.getElementById("tableButton");
+        var figuresButton = document.getElementById("figuresButton");
+        var slider = document.getElementById("myRange");
+        var bright = false;
+        var command = false;
+
+        var data = {};
+        var prevdata = {};
+        var objectMarkers = {};
+        var IDs = [];
+
+        var portrait = $(window).height()>$(window).width();
+        var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+        var ipad = (/ipad/i.test(navigator.userAgent.toLowerCase()));
+
+        var map;
+        var focusCircle;
+        var currentFocusValue;
+        var fCLat;
+        var fCLng;
+        var baseMaps = {};
+        var currentLayer;
+        var qvLayers = [];
+        var qvbcgs = true;
+        var bcgsLayer = true;
+        var iwHt, iwWd, wMin, imDisp, y_start, y_end, x_start, x_end, bounds, zDelta, mapMaxZoom;
+        var mapkeys = {};
+
+        var fcb = document.getElementById("focusCenterButton");
+
+        var asb = document.getElementById("advSrchButton");
+        var currentAdvSrch = -1;
+        var lastAdvSrch = -1;
+        var advSrchColors = ["#e77e23","#3598db","#f1c40e","#9b58b5","#e84c3d","#95a5a5"]
+        var advSrchShow = [];
+        var advSrchCount = 0;
+        var iASlat;
+        var iASlng;
+
+        var lastCenter = "image";
+        var cntLat, cntLng;
+        var focusOffsetLat = 0;
+        var focusOffsetLng = 0;
+
+        var markerSize = "small";
+
+        // check for user url input and load scale bar
+        window.onload = function() {
+          var url = window.location.search.substring();
+          var origFieldName;
+          var zoomLevel = 0;
+          var userid = 0;
+          var userra;
+          var userdec;
+          var showTable = 0;
+          var showFigures = 0;
+          var updateMS = false;
+          var updateMarkers = false;
+          var changeBL = "";
+          var userbcgs = "1";
+          var portrait = $(window).height()>$(window).width();
+          if (url.includes("?")) {
+            if (url.includes("advancedsearch=")) {
+              advancedSearches = url.split("advancedsearch=")[1].split("}]")[0]+"}]"
+              var input = url.replace(advancedSearches, '').split("?");
+            } else {
+              var input = url.split("?");
+            }
+            for (j=0; j<input.length; j++) {
+              if (input[j].includes("&") & !input[j].includes(fieldName+"/")) {
+                inputPairs = input[j].split("&");
+              } else {
+                inputPairs = [input[j]];
+              }
+              for (i=0; i<inputPairs.length; i++) {
+                if (inputPairs[i] != "" & inputPairs[i].includes("=")) {
+                  inputKey = inputPairs[i].split("=")[0]
+                  inputValue = inputPairs[i].split("=")[1]
+                  if (inputKey != "" && inputValue != "") {
+                    goodKey = ["field", "fieldname"]
+                    if (goodKey.includes(inputKey.toLowerCase())) {
+                      origFieldName = inputValue;
+                      if (fields.includes(inputValue)) {
+                        fieldName = inputValue;
+                      } else {
+                        fieldName = inputValue.toLowerCase().replace(/%20/g,'');
+                        fieldName = fieldName.split(".")[0]
+                        fieldName = fieldName.replace(/-/g,'');
+                        fieldName = fieldName.replace(/%2B/g,'');
+                        if (inputValue.toLowerCase().includes("m")) {
+                          fieldName = fieldName.replace("macsj","M").replace("macs","M").replace("m","M");
+                        } else if (inputValue.toLowerCase().includes("a")) {
+                          fieldName = fieldName.replace("abells","A").replace("abell","A").replace("a","A");
+                        }
+                        fieldName =
+                          fieldName.replace("cluster","clu").replace("clu","-clu").replace("parallel", "par").replace(
+                          "par","-par")
+                        if (!fieldName.includes("clu") & !fieldName.includes("par")) {
+                          fieldName = fieldName + "-clu";
+                        }
+                      }
+                    }
+                    goodKey = ["zoom", "zl"]
+                    if (goodKey.includes(inputKey.toLowerCase())) {
+                      zoomLevel = Number(inputValue);
+                    }
+                    goodKey = ["id"]
+                    if (goodKey.includes(inputKey.toLowerCase())) {
+                      userid = Number(inputValue);
+                    }
+                    goodKey = ["data", "d"]
+                    goodValue = ["true", "1"]
+                    if (goodKey.includes(inputKey.toLowerCase()) && goodValue.includes(inputValue.toLowerCase())) {
+                      showTable = 1;
+                      showFigures = 1;
+                    }
+                    goodKey = ["table", "t"]
+                    goodValue = ["true", "1"]
+                    if (goodKey.includes(inputKey.toLowerCase()) && goodValue.includes(inputValue.toLowerCase())) {
+                      showTable = 1;
+                    }
+                    goodKey = ["fig", "f"]
+                    goodValue = ["true", "1"]
+                    if (goodKey.includes(inputKey.toLowerCase()) && goodValue.includes(inputValue.toLowerCase())) {
+                      showFigures = 1;
+                    }
+                    goodKey = ["ms", "markersize"]
+                    goodValue = ["small", "s", "medium", "m", "large", "l"]
+                    if (goodKey.includes(inputKey.toLowerCase()) && goodValue.includes(inputValue.toLowerCase())) {
+                      if (inputValue == "s") { inputValue = "small"; }
+                      else if (inputValue == "m") { inputValue = "medium"; }
+                      else if (inputValue == "l") { inputValue = "large"; }
+                      markerSize = inputValue.toLowerCase();
+                      updateMS = true;
+                    }
+                    goodKey = ["markers", "marker", "x"]
+                    goodValue = ["true", "1"]
+                    if (goodKey.includes(inputKey.toLowerCase()) && goodValue.includes(inputValue.toLowerCase())) {
+                      updateMarkers = true;
+                    }
+                    goodKey = ["filter", "band"]
+                    if (goodKey.includes(inputKey.toLowerCase())) {
+                      changeBL = inputValue.toLowerCase();
+                    }
+                    if (inputKey.toLowerCase() == "bcgs") {
+                      userbcgs = inputValue.toLowerCase();
+                    }
+                    if (inputKey.toLowerCase() == "radec") {
+                      if (inputValue.includes('(') & inputValue.includes(')') & inputValue.includes(',')) {
+                        userra = Number(inputValue.split('(')[1].split(',')[0].replace(/%20/g,'').trim());
+                        userdec = Number(inputValue.split(')')[0].split(',')[1].replace(/%20/g,'').trim());
+                      } else if (inputValue.includes(',')) {
+                        userra = Number(inputValue.split(',')[0].replace(/%20/g,'').trim());
+                        userdec = Number(inputValue.split(',')[1].replace(/%20/g,'').trim());
+                      } else if (inputValue.includes('(') & inputValue.includes(')') & inputValue.includes(' ')) {
+                        userra = Number(inputValue.split('(')[1].split('%20')[0].trim());
+                        userdec = Number(inputValue.split(')')[0].split('%20').slice(-1)[0].trim());
+                      } else if (inputValue.includes('%20')) {
+                        userra= Number(inputValue.split('%20')[0].trim());
+                        userdec = Number(inputValue.split('%20').slice(-1)[0].trim());
+                      }
+                    }
+                    if (inputKey.toLowerCase() == "ra") {
+                      userra = Number(inputValue);
+                    }
+                    if (inputKey.toLowerCase() == "dec") {
+                      userdec = Number(inputValue);
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          // Default field is A370-clu
+          if (!fields.includes(fieldName)) { fieldName = "A370-clu"; }
+          if (origFieldName == undefined) {
+            newurl(window.location.toString()+"?field="+fieldName);
+          } else {
+            newurl(window.location.toString().replace(origFieldName, fieldName));
+          }
+
+          // load in relevant JSON files and variables, set up the map and menu
+          setup(true);
+
+          if (showTable == 1) {
+            showHideTable();
+          }
+          if (showFigures == 1) {
+            showHideFigures();
+          }
+
+          if (changeBL != "") {
+            if (filters.includes(changeBL)) {
+              changeBaseLayer(changeBL);
+            }
+          }
+          if (filters.includes("bcgs") & userbcgs == "0" & changeBL != "seg") {
+            changeBaseLayer("bcgs");
+          }
+          if (groupJSON.hasOwnProperty("defaultMarkerOptions")) {
+            if (updateMS) {
+              updateMarkerSize(markerSize, false);
+            }
+            createMarkers();
+            if (updateMarkers) {
+              if (groupJSON.hasOwnProperty("defaultMarkerOptions")) {
+                setTimeout(addRemoveMarkers, 1000);
+              }
+            }
+          }
+          if (userid != 0) {
+            document.getElementById("searchID").value = userid;
+            fcb.style.cursor = "pointer";
+            getobj(document.getElementById("searchIDForm"), zoomLevel, 1);
+            if (userra>=minRA && userra<=maxRA && userdec>=minDEC && userdec<=maxDEC) {
+              y = decy(userdec);
+              lat = ylat(y) + focusOffsetLat;
+              x = rax(userra);
+              lng = xlng(x) + focusOffsetLng;
+              map.setView(new L.LatLng(lat, lng), zoomLevel);
+            } else {
+              focusCenterImage(zoomLevel);
+            }
+          } else if (userra>=minRA && userra<=maxRA && userdec>=minDEC && userdec<=maxDEC) {
+            //check to make sure within bounds of map
+            y = decy(userdec);
+            lat = ylat(y) + focusOffsetLat;
+            x = rax(userra);
+            lng = xlng(x) + focusOffsetLng;
+            userLocationRADEC(userra, userdec, zoomLevel)
+            focusCenterImage(-1);
+          } else {
+            map.setView(new L.LatLng(ylat(finalxySize[1]/2.), xlng(finalxySize[0]/2.)), zoomLevel);
+          }
+          if (zoomLevel == 0 && document.getElementById("searchID").value == "") {
+            zoomOutCenterImage();
+          }
+          // url advanced search
+          if (url.includes("advancedsearch=")) {
+            urlAdvancedSearches(advancedSearches)
+          }
+        }
+
+        $(window).on("resize", function() {
+          $("#map").height($(window).height()).width($(window).width());
+          map.invalidateSize();
+
+          wHt = $(window).height();
+          wWd = $(window).width();
+          map.setMaxBounds([[y_start-(wHt/2.), x_start-(wWd/2.)], [y_end+(wHt/2.), x_end+(wWd/2.)]]);
+
+          portrait = wHt > wWd;
+
+          // no overlapping with table
+          if (mobile & portrait) {
+            document.getElementById("topLeftContainer").style.width = "calc(100% - 10px)";
+            document.getElementById("fieldInputForm").style.width = "100%";
+            document.getElementById("fieldinputAutocompleteContainer").style.top = "40px";
+            document.getElementById("fieldinputAutocompleteContainer").style.left = "5px";
+            document.getElementById("fieldinputAutocompleteContainer").style.width = "calc(100% - 10px)";
+            document.getElementById("searchContainer").style.width = "100%";
+            document.getElementById("menuContainer").style.width = "calc(100% - 10px)";
+            // adjust button width
+            filterButtons = document.getElementsByClassName("layerButton");
+            buttonWidth = 0;
+            buttonsPerRow = filters.length;
+            i = -1;
+            while (buttonWidth < 55.) {
+              i++
+              if (i == 0) {
+                buttonWidth = ($(window).width() - 10)/(buttonsPerRow);
+              } else {
+                buttonWidth = ($(window).width() - 10)/(buttonsPerRow - i);
+              }
+            }
+            buttonsPerRow = buttonsPerRow - i;
+            for (b=0; b<filterButtons.length; b++) {
+              button = filterButtons[b];
+              button.style.width = buttonWidth+"px";
+            }
+            numFilterRows = Math.ceil(filters.length/buttonsPerRow);
+            document.getElementById("tempAlert").style.top = (136 + 32*numFilterRows + 49*sCCheckbox)+"px";
+            document.getElementById("tempAlert").style.left = "5px";
+            document.getElementById("filterButtonsContainer").style.width = "100%";
+            document.getElementById("objectInfo").style.width = "100%";
+            document.getElementById("objectInfo").style.left = "0px";
+            document.getElementById("objectInfo").style.bottom = "0px";
+            if (figuresButton.style.backgroundImage.includes("blue")) {
+              tableDivMarginBottom = Math.max($(window).height()*0.16, 79) + 52;
+              tableMaxHeight =
+                Math.min(($(window).height()*0.5), ($(window).height() - (136 + 32*numFilterRows + 49*sCCheckbox)));
+              document.getElementById("objectTableDiv").style.marginBottom = tableDivMarginBottom+"px";
+              document.getElementById("objectTableContainer").style.maxHeight = tableMaxHeight+"px";
+            } else {
+              tableMaxHeight =
+                Math.min(($(window).height()*0.4), ($(window).height() - (136 + 32*numFilterRows + 49*sCCheckbox)));
+              document.getElementById("objectTableDiv").style.marginBottom = "52px";
+              document.getElementById("objectTableContainer").style.maxHeight = tableMaxHeight+"px";
+            }
+            document.getElementById("objectTableContainer").style.left = "0px";
+            document.getElementById("objectTableContainer").style.bottom = "0px";
+            document.getElementById("objectTableContainer").style.width = "100%";
+            if (figuresButton.style.backgroundImage.includes("blue")) {
+              document.getElementById("mobilePortraitFiguresContainerBackground").style.display = "block";
+            }
+            document.getElementById("figuresContainer").style.height = $(window).height()*0.16+"px";
+            document.getElementById("figuresContainer").style.maxWidth = "100%";
+            document.getElementById("figuresContainer").style.left = "0px";
+            document.getElementById("figuresContainer").style.bottom = "52px";
+          } else if (mobile & !portrait) {
+            document.getElementById("tempAlert").style.top = "8px";
+            document.getElementById("tempAlert").style.left = "315px";
+            document.getElementById("topLeftContainer").style.width = "300px";
+            document.getElementById("fieldInputForm").style.width = "100%";
+            document.getElementById("fieldinputAutocompleteContainer").style.top = "40px";
+            document.getElementById("fieldinputAutocompleteContainer").style.left = "5px";
+            document.getElementById("fieldinputAutocompleteContainer").style.width = "300px";
+            document.getElementById("searchContainer").style.width = "100%";
+            document.getElementById("menuContainer").style.width = "300px";
+            document.getElementById("filterButtonsContainer").style.width = "100%";
+            // adjust button width
+            filterButtons = document.getElementsByClassName("layerButton");
+            if (filters.length >= 5) {
+              filtersPerRow = 5;
+            } else { filtersPerRow = filters.length; }
+            if (filtersPerRow < 3) { filtersPerRow = 3; }
+            for (b=0; b<filterButtons.length; b++) {
+              button = filterButtons[b];
+              layerButtonWidth = 300./filtersPerRow + "px";
+              button.style.width = layerButtonWidth;
+              button.style.backgroundSize = layerButtonWidth+" 32px";
+            }
+            numFilterRows = Math.ceil(filters.length/filtersPerRow);
+            document.getElementById("mobilePortraitFiguresContainerBackground").style.display = "none";
+            document.getElementById("figuresContainer").style.maxWidth = "calc(100% - 305px)";
+            document.getElementById("figuresContainer").style.background = "transparent";
+            document.getElementById("figuresContainer").style.left = "305px";
+            document.getElementById("figuresContainer").style.bottom = "8px";
+            document.getElementById("objectTableDiv").style.marginBottom = "52px";
+            document.getElementById("objectTableContainer").style.maxHeight =
+              ($(window).height() - 144 - 32*numFilterRows - 49*sCCheckbox)+"px";
+            document.getElementById("objectTableContainer").style.width = "300px";
+            document.getElementById("objectTableContainer").style.left = "5px";
+            document.getElementById("objectTableContainer").style.bottom = "8px";
+            document.getElementById("objectTable").style.width = "100%";
+            document.getElementById("objectInfo").style.width = "300px";
+            document.getElementById("objectInfo").style.left = "5px";
+            document.getElementById("objectInfo").style.bottom = "8px";
+            if (document.getElementById("searchID").value != "") {
+              // reload table by executing getid function
+              fCX = Math.round(lngx(focusCircle.getLatLng().lng));
+              fCY = Math.round(laty(focusCircle.getLatLng().lat));
+              getid(fCX, fCY);
+            }
+          } else {
+            document.getElementById("objectTableContainer").style.maxHeight =
+              ($(window).height() - 248 - 32*numFilterRows)+"px";
+          }
+
+          if (document.getElementById("zoomFigsContainer").style.display == "block") {
+            figs = document.getElementsByClassName("figure");
+            good = [];
+            minheight = $(window).height()*0.8;
+            maxwidth = 0;
+            for (f=0; f<figs.length; f++) {
+              if (figs[f].id.includes("zoom") & figs[f].style.display == "inline-block") {
+                figs[f].style.display = "none";
+                figs[f].style.display = "inline-block";
+                good.push(figs[f]);
+                ht = $(figs[f]).height();
+                wd = $(figs[f]).width();
+                if (ht < minheight) {
+                  minheight = ht;
+                }
+                if (wd > maxwidth) {
+                  maxwidth = wd;
+                  if ((ht*0.9*$(window).width()/wd) < minheight) {
+                    minheight = (ht*0.9*$(window).width()/wd);
+                  }
+                }
+              }
+            }
+            minheight = Math.max(minheight, 0.5*$(window).height())
+            document.getElementById("zoomFigsContainer").style.height = minheight + "px";
+            document.getElementById("zoomFigsLeft").style.width =
+              Math.max(0, ($(window).width() - $(good[0]).width())/2.) + "px";
+            document.getElementById("zoomFigsRight").style.width =
+              Math.max(0, ($(window).width() - $(good[good.length-1]).width())/2.) + "px";
+            document.getElementById("zoomFigsContainer").style.bottom =
+              ($(window).height() - $(good[0]).height())/2. + "px";
+            document.getElementById("zoomFigsContainer").scrollLeft +=
+              $(document.getElementById("zoomfigure"+figNames[num])).position().left - $(window).width()/2. +
+              $(document.getElementById("zoomfigure"+figNames[num])).width()/2.;
+          }
+          menuSizing();
+          advancedSearchResizeFilterBounds();
+          if (fcb.style.backgroundImage.includes("blue") & lastCenter == "focus") {
+            focusCenterImage(-1);
+          } else if (document.getElementById("zoomOutCenterButton").style.backgroundImage.includes("blue") &
+                     map.getZoom() == 0) {
+            zoomOutCenterImage();
+          }
+        }).trigger("resize");
+
+      </script>
+    </div>
+  </body>
+</html>
