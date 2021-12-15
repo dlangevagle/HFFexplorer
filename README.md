@@ -57,9 +57,9 @@ catalog source.
 ### Python Scripts used to create the website files (found in the python_scripts/ directory):
 <b>figgen.py</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-Adds labels to the SED figure and PNG cutouts (found in the A2744-clu/object_figs/ directory). These are the figures
+Adds labels to the SED figure and PNG cutouts (found in the A2744-clu/object_figs/ directory). These are the
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-displayed in the bottom figure panel.
+figures displayed in the bottom figure panel.
 - SED Figure
 - Redshift PDF
 - RGB 1
