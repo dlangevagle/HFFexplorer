@@ -57,14 +57,25 @@ catalog source.
 ### Python Scripts used to create the website files (found in the python_scripts/ directory):
 <b>figgen.py</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
-<br>
-<br>
+Adds labels to the SED figure and PNG cutouts (found in the A2744-clu/object_figs/ directory). These are the figures
+<br>&nbsp;&nbsp;&nbsp;&nbsp;
+displayed in the bottom figure panel.
+- SED Figure
+- Redshift PDF
+- RGB 1
+- RGB 2
+- RGB 3
+- Detection Image
+- Magnification Map
+
 <b>jsonmaker.py</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
 <br>
 <b>pagegen.py</b>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;
+Creates the informational webpage for each source. Example:
+[A2744-clu, id=3501](http://cosmos.phy.tufts.edu/~danilo/HFF/HFFexplorer/object_pages/?field=A2744-clu&id=3501)
 <br>
 <br>
 <b>radecgen.py</b>
